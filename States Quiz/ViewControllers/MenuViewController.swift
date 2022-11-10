@@ -61,8 +61,9 @@ class MenuViewController: UIViewController {
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
     }
     
+    
     @objc private func playButtonTapped() {
-        print("AY")
+        navigationController?.pushViewController(GameViewController(), animated: true)
     }
 }
 
