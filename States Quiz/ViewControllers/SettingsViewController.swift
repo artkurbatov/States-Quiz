@@ -14,6 +14,4 @@ class SettingsViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
     }
-
-
 }

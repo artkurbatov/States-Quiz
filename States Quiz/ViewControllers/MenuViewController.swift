@@ -23,6 +23,7 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
+        navigationItem.backButtonTitle = ""
         
         //setUpCollection()
         

@@ -26,6 +26,11 @@ class AnswerCollectionViewCell: UICollectionViewCell {
         label.font = .boldSystemFont(ofSize: 20)
         label.numberOfLines = 0
         label.textAlignment = .center
+        
+        layer.cornerRadius = 10
+        layer.masksToBounds = true
+        layer.borderColor = UIColor.black.cgColor
+        layer.borderWidth = 1
     }
     
 }

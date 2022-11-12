@@ -86,7 +86,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath) as? AnswerCollectionViewCell {
-            cell.backgroundColor = .cyan
+            cell.backgroundColor = .systemBackground
             cell.configureCell(text: "New\nhampshire")
             return cell
         }
