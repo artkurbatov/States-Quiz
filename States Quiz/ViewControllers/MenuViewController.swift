@@ -10,14 +10,10 @@ import SnapKit
 
 class MenuViewController: UIViewController {
     
-//    private let gameCollectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-//        return collectionView
-//    }()
+    #warning("Add table view to display different game modes")
     
     private var playButton = UIButton()
+    private var gameModeTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,25 +21,12 @@ class MenuViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.backButtonTitle = ""
         
-        //setUpCollection()
-        
-       // gameCollectionView.delegate = self
-       // gameCollectionView.dataSource = self
+        gameModeTableView.delegate = self
+        gameModeTableView.dataSource = self
         
         setUpButton()
     }
-        
-    private func setUpCollection() {
-        
-//        view.addSubview(gameCollectionView)
-//        gameCollectionView.backgroundColor = .systemBackground
-//
-//        gameCollectionView.snp.makeConstraints { make in
-//            make.top.leading.equalToSuperview().offset(20)
-//            make.bottom.trailing.equalToSuperview().offset(-20)
-//        }
-    }
-    
+            
     private func setUpButton() {
         
         view.addSubview(playButton)
@@ -62,30 +45,19 @@ class MenuViewController: UIViewController {
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
     }
     
-    
     @objc private func playButtonTapped() {
         navigationController?.pushViewController(GameViewController(), animated: true)
     }
 }
 
-
-
-//extension MenuViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 2
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//        let cell = gameCollectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-//        cell.backgroundColor = .purple
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        let size = collectionView.frame.width * 0.45
-//        return CGSize(width: size, height: size)
-//    }
-//}
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
+}

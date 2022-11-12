@@ -10,6 +10,8 @@ import SnapKit
 
 class GameViewController: UIViewController {
     
+    #warning("Add activity view controller after the game ends to share user's result")
+    
     private var gameTitle = UILabel()
     private var mapView = UIImageView()
     
@@ -80,6 +82,7 @@ class GameViewController: UIViewController {
 
 extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    // MARK: - Cell configuration
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
     }
@@ -95,15 +98,16 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20.0
-    }
-    
+    // MARK: - Cell size configuration
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.frame.width * 0.45
         let height = collectionView.frame.height * 0.25
         
         return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20.0
     }
 }
