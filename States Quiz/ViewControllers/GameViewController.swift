@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
     private var answersCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "answerCell")
+        collection.register(AnswerCollectionViewCell.self, forCellWithReuseIdentifier: "answerCell")
         return collection
     }()
     
@@ -85,10 +85,14 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath)
-        cell.backgroundColor = .cyan
-        #warning("configure cells")
-        return cell
+        if let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath) as? AnswerCollectionViewCell {
+            cell.backgroundColor = .cyan
+            cell.configureCell(text: "New\nhampshire")
+            return cell
+        }
+        else {
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -98,7 +102,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.frame.width * 0.45
-        let height = collectionView.frame.height * 0.20
+        let height = collectionView.frame.height * 0.25
         
         return CGSize(width: width, height: height)
     }
