@@ -15,6 +15,9 @@ class GameViewController: UIViewController {
     private var gameTitle = UILabel()
     private var mapView = UIImageView()
     
+    private var model = ContentModel()
+    private var currentQuestionIndex = 0
+    
     private var answersCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -36,6 +39,9 @@ class GameViewController: UIViewController {
         configureMap()
         configureCollection()
     }
+    
+    
+    // MARK: - Configure views and set constraints
     
     private func configureTitle() {
         
@@ -76,8 +82,6 @@ class GameViewController: UIViewController {
             make.height.equalToSuperview().multipliedBy(0.35)
         }
     }
-    
-
 }
 
 extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -90,7 +94,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath) as? AnswerCollectionViewCell {
             cell.backgroundColor = .systemBackground
-            cell.configureCell(text: "New\nhampshire")
+            cell.configureCell(text: model.quiz[currentQuestionIndex].answers[indexPath.row])
             return cell
         }
         else {

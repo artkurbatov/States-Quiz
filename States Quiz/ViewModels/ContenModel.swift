@@ -13,7 +13,11 @@ class ContentModel {
     
     init() {
         
-        quiz.append(Quiz(id: 0, image: "test", answers: ["1", "2", "3", "4"], correctAnswer: "4"))
+        quiz.append(Quiz(id: 0, image: "test", answers: ["Alabama", "New York", "South Carolina", "Wisconsin"], correctAnswer: "4"))
     }
     
+    func hasNext(currentIndex: Int) -> Bool {
+        
+        return currentIndex + 1 < quiz.count
+    }
 }

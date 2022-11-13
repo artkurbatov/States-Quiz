@@ -21,8 +21,8 @@ class MenuViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.backButtonTitle = ""
         
-        gameModeTableView.delegate = self
-        gameModeTableView.dataSource = self
+        //gameModeTableView.delegate = self
+        //gameModeTableView.dataSource = self
         
         setUpButton()
     }
@@ -50,14 +50,14 @@ class MenuViewController: UIViewController {
     }
 }
 
-extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
-    }
-    
-    
-}
+//extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//    
+//    
+//}
