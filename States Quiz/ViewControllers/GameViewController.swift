@@ -11,6 +11,7 @@ import SnapKit
 class GameViewController: UIViewController {
     
     #warning("Add activity view controller after the game ends to share user's result")
+    #warning("Move code to separate functions")
     
     private var gameTitle = UILabel()
     private var mapView = UIImageView()
@@ -127,7 +128,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             selectedCell?.backgroundColor = .systemGreen
             if model.hasNext(currentIndex: currentQuestionIndex) {
                 currentQuestionIndex += 1
-                
+                model.quiz[currentQuestionIndex].answers.shuffle()
                 UIView.animate(withDuration: 1, delay: 0.2) {
                     collectionView.alpha = 0
                 } completion: { _ in

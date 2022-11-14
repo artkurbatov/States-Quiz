@@ -15,6 +15,8 @@ class ContentModel {
         
         quiz.append(Quiz(id: 0, image: "test", answers: ["Alabama", "New York", "South Carolina", "Wisconsin"], correctAnswer: "New York"))
         quiz.append(Quiz(id: 0, image: "test", answers: ["Texas", "Washington", "North Carolina", "Wisconsin"], correctAnswer: "Texas"))
+        
+        quiz.shuffle()
     }
     
     func hasNext(currentIndex: Int) -> Bool {
