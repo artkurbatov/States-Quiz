@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     
     private var model = ContentModel()
     private var currentQuestionIndex = 0
+    //private var lifeCount = 4
     
     private var answersCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -113,5 +114,35 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20.0
+    }
+    
+    // MARK: - Next question navigation
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedCell = collectionView.cellForItem(at: indexPath)
+        
+        if model.quiz[currentQuestionIndex].answers[indexPath.row] == model.quiz[currentQuestionIndex].correctAnswer {
+            
+            selectedCell?.backgroundColor = .systemGreen
+            if model.hasNext(currentIndex: currentQuestionIndex) {
+                currentQuestionIndex += 1
+                
+                UIView.animate(withDuration: 1, delay: 0.2) {
+                    collectionView.alpha = 0
+                } completion: { _ in
+                    self.answersCollection.reloadData()
+                    UIView.animate(withDuration: 1, delay: 0) {
+                        collectionView.alpha = 1
+                    }
+                }
+            }
+        }
+        else {
+            //lifeCount -= 1
+            //if lifeCount == 0 {
+            //}
+            selectedCell?.backgroundColor = .systemRed
+        }
     }
 }
