@@ -138,6 +138,12 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     }
                 }
             }
+            else {
+                let alert = AlertViewController()
+                alert.modalPresentationStyle = .overFullScreen
+                present(alert, animated: true)
+                
+            }
         }
         else {
             //lifeCount -= 1
