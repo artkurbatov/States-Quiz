@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class ContentModel {
     
@@ -23,4 +24,28 @@ class ContentModel {
         
         return currentIndex + 1 < quiz.count
     }
+    
+    func createResultAlert(title: String, numberOfCorrectAnswers numCorrect: Int, sender: UIViewController) -> UIAlertController {
+        
+        let alert = UIAlertController(title: title, message: "You have answerd \(numCorrect) question out of \(quiz.count)", preferredStyle: .alert)
+        
+        let backAction = UIAlertAction(title: "Back to menu", style: .default) { _ in
+            sender.navigationController?.popToRootViewController(animated: true)
+        }
+        
+        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
+            // create activity controller
+        }
+        
+        alert.addAction(backAction)
+        alert.addAction(shareAction)
+        
+        return alert
+    }
+    
+//    func createActivityController() -> UIActivityViewController {
+//        
+//        let activityController = UIActivityViewController(activityItems: <#T##[Any]#>, applicationActivities: <#T##[UIActivity]?#>)
+//        return activityController
+//    }
 }

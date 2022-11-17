@@ -10,15 +10,18 @@ import SnapKit
 
 class GameViewController: UIViewController {
     
-    #warning("Add activity view controller after the game ends to share user's result")
-    #warning("Move code to separate functions")
+#warning("Add activity view controller after the game ends to share user's result")
+#warning("Move code to separate functions")
+#warning("Dark/light modes color conflict")
     
     private var gameTitle = UILabel()
     private var mapView = UIImageView()
     
     private var model = ContentModel()
     private var currentQuestionIndex = 0
-    //private var lifeCount = 4
+    private var lifeCount = 4
+    
+    private var selectedCellPaths = Set<IndexPath>()
     
     private var answersCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,10 +30,10 @@ class GameViewController: UIViewController {
         return collection
     }()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         
         answersCollection.delegate = self
@@ -48,7 +51,7 @@ class GameViewController: UIViewController {
     private func configureTitle() {
         
         view.addSubview(gameTitle)
-       
+        
         gameTitle.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide)
             make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
@@ -57,7 +60,8 @@ class GameViewController: UIViewController {
         
         gameTitle.textAlignment = .center
         gameTitle.numberOfLines = 0
-        gameTitle.text = "Game"
+        //gameTitle.text = "Game"
+        gameTitle.text = "life count \(lifeCount)"
     }
     
     private func configureMap() {
@@ -83,6 +87,11 @@ class GameViewController: UIViewController {
             make.trailing.bottom.equalToSuperview().offset(-20)
             make.height.equalToSuperview().multipliedBy(0.35)
         }
+    }
+    
+    private func displayNextQuestion() {
+        currentQuestionIndex += 1
+        model.quiz[currentQuestionIndex].answers.shuffle()
     }
 }
 
@@ -118,37 +127,52 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     // MARK: - Next question navigation
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedCell = collectionView.cellForItem(at: indexPath)
         
+        // disable cell to prevent user from selecting one cell multiple times
+        selectedCell?.isUserInteractionEnabled = false
+        selectedCellPaths.insert(indexPath)
+        
+        // if answer is correct
         if model.quiz[currentQuestionIndex].answers[indexPath.row] == model.quiz[currentQuestionIndex].correctAnswer {
             
             selectedCell?.backgroundColor = .systemGreen
+            // if it wasn't the last question
             if model.hasNext(currentIndex: currentQuestionIndex) {
-                currentQuestionIndex += 1
-                model.quiz[currentQuestionIndex].answers.shuffle()
-                UIView.animate(withDuration: 1, delay: 0.2) {
+                
+                displayNextQuestion()
+                
+                // disappear and appear animation
+                UIView.animate(withDuration: 0.6, delay: 0.2) {
                     collectionView.alpha = 0
                 } completion: { _ in
                     self.answersCollection.reloadData()
-                    UIView.animate(withDuration: 1, delay: 0) {
+                    UIView.animate(withDuration: 0.6, delay: 0) {
                         collectionView.alpha = 1
                     }
                 }
+                // enable user interactions with cells
+                for path in selectedCellPaths {
+                    collectionView.cellForItem(at: path)?.isUserInteractionEnabled = true
+                }
             }
+            // if it was the last question present result alert
             else {
-                let alert = AlertViewController()
-                alert.modalPresentationStyle = .overFullScreen
-                present(alert, animated: true)
                 
+                let alert = model.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
+                present(alert, animated: true)
             }
         }
+        // if answer is wrong
         else {
-            //lifeCount -= 1
-            //if lifeCount == 0 {
-            //}
+            lifeCount -= 1
+            gameTitle.text = "life count \(lifeCount)"
+            if lifeCount < 1 {
+                let alert = model.createResultAlert(title: "Oops...", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
+                present(alert, animated: true)
+            }
             selectedCell?.backgroundColor = .systemRed
         }
     }

@@ -10,14 +10,20 @@ import SnapKit
 
 class AlertViewController: UIViewController {
     
+    #warning("Remove later")
+    
     private var alertView = UIView()
     private var cancelButton = UIButton()
+    var resultTitle = UILabel()
+    
+    var numCorrect: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
         setUpAlert()
+        setUpTitle()
         setUpCancelButton()
     }
     
@@ -31,9 +37,23 @@ class AlertViewController: UIViewController {
         
         alertView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalToSuperview().multipliedBy(0.5)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalToSuperview().multipliedBy(0.6)
         }
+    }
+    
+    private func setUpTitle() {
+        
+        alertView.addSubview(resultTitle)
+        resultTitle.font = UIFont.boldSystemFont(ofSize: 20.0)
+        resultTitle.textAlignment = .center
+                
+        resultTitle.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+       
+        
     }
     
     private func setUpCancelButton() {

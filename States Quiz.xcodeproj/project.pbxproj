@@ -95,8 +95,8 @@
 				B8E2B18E2915754D001BFEF0 /* TabBarController.swift */,
 				B809A7CE29157919001CEEB7 /* MenuViewController.swift */,
 				B858C38F291D2D3100DC1559 /* GameViewController.swift */,
-				B809A7D029157945001CEEB7 /* SettingsViewController.swift */,
 				B88AAFFF2924F8BE0039DCF9 /* AlertViewController.swift */,
+				B809A7D029157945001CEEB7 /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
