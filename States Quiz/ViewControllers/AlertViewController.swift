@@ -13,18 +13,28 @@ class AlertViewController: UIViewController {
     #warning("Remove later")
     
     private var alertView = UIView()
-    private var cancelButton = UIButton()
-    var resultTitle = UILabel()
     
+    private var menuButton = UIButton()
+    private var shareButton = UIButton()
+    private var playAgainButton = UIButton()
+    private var stackView = UIStackView()
+    
+    private var scoreLable = UILabel()
+    var resultLabel = UILabel()
+    
+    var sender: UIViewController?
     var numCorrect: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        
+    
         setUpAlert()
-        setUpTitle()
-        setUpCancelButton()
+        setUpResultLabel()
+        setUpStackView()
+        setUpGoToMenuButton()
+        setUpShareButton()
+        setUpPlayAgainButton()
     }
     
     
@@ -42,38 +52,90 @@ class AlertViewController: UIViewController {
         }
     }
     
-    private func setUpTitle() {
+    private func setUpResultLabel() {
         
-        alertView.addSubview(resultTitle)
-        resultTitle.font = UIFont.boldSystemFont(ofSize: 20.0)
-        resultTitle.textAlignment = .center
+        alertView.addSubview(resultLabel)
+        resultLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
+        resultLabel.textAlignment = .center
                 
-        resultTitle.snp.makeConstraints { make in
+        resultLabel.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
         }
-       
-        
     }
     
-    private func setUpCancelButton() {
+    private func setUpStackView() {
         
-        alertView.addSubview(cancelButton)
-        cancelButton.backgroundColor = .blue
-        cancelButton.setTitle("Cancel", for: .normal)
-        cancelButton.layer.cornerRadius = 10
-        cancelButton.layer.masksToBounds = true
-        cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+        alertView.addSubview(stackView)
+        stackView.addArrangedSubview(menuButton)
+        stackView.addArrangedSubview(shareButton)
+        stackView.addArrangedSubview(playAgainButton)
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
         
-        cancelButton.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-20)
             make.height.equalTo(40)
-            make.width.equalToSuperview().multipliedBy(0.3)
+            make.width.equalToSuperview().offset(-20)
             make.centerX.equalToSuperview()
         }
     }
     
-    @objc private func cancelAction() {
+    private func setUpGoToMenuButton() {
+        
+        
+        // TODO: Change button style
+       // alertView.addSubview(goToManuButton)
+        menuButton.backgroundColor = .blue
+        menuButton.setTitle("Menu", for: .normal)
+        menuButton.layer.cornerRadius = 10
+        menuButton.layer.masksToBounds = true
+        menuButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
+        
+        menuButton.snp.makeConstraints { make in
+            make.height.equalTo(40)
+            make.width.equalToSuperview().multipliedBy(0.3)
+        }
+    }
+    
+    private func setUpShareButton() {
+        
+        
+        // TODO: Change button style
+        //alertView.addSubview(goToManuButton)
+        shareButton.backgroundColor = .blue
+        shareButton.setTitle("Share", for: .normal)
+        shareButton.layer.cornerRadius = 10
+        shareButton.layer.masksToBounds = true
+        
+        shareButton.snp.makeConstraints { make in
+            make.height.equalTo(40)
+            make.width.equalToSuperview().multipliedBy(0.3)
+        }
+        
+        // add activity controller
+    }
+    
+    private func setUpPlayAgainButton() {
+        
+        
+        // TODO: Change button style
+        //alertView.addSubview(goToManuButton)
+        playAgainButton.backgroundColor = .blue
+        playAgainButton.setTitle("Play again", for: .normal)
+        playAgainButton.layer.cornerRadius = 10
+        playAgainButton.layer.masksToBounds = true
+        
+        playAgainButton.snp.makeConstraints { make in
+            make.height.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.3)
+        }
+    }
+    
+    // MARK: - Button actions
+    
+    @objc private func menuAction() {
         dismiss(animated: true)
+        sender?.navigationController?.popToRootViewController(animated: true)
     }
 }

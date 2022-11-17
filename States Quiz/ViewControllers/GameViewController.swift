@@ -10,9 +10,10 @@ import SnapKit
 
 class GameViewController: UIViewController {
     
-#warning("Add activity view controller after the game ends to share user's result")
-#warning("Move code to separate functions")
-#warning("Dark/light modes color conflict")
+    #warning("Add activity view controller after the game ends to share user's result")
+    #warning("Move code to separate functions")
+    #warning("Dark/light modes color conflict")
+    #warning("Add image animations")
     
     private var gameTitle = UILabel()
     private var mapView = UIImageView()
@@ -145,7 +146,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 displayNextQuestion()
                 
                 // disappear and appear animation
-                UIView.animate(withDuration: 0.6, delay: 0.2) {
+                UIView.animate(withDuration: 0.4, delay: 0.2) {
                     collectionView.alpha = 0
                 } completion: { _ in
                     self.answersCollection.reloadData()
@@ -169,9 +170,16 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         else {
             lifeCount -= 1
             gameTitle.text = "life count \(lifeCount)"
+            
             if lifeCount < 1 {
                 let alert = model.createResultAlert(title: "Oops...", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
                 present(alert, animated: true)
+//                let alert = AlertViewController()
+//                alert.modalPresentationStyle = .overFullScreen
+//                alert.resultLabel.text = "Oops..."
+//                alert.numCorrect = currentQuestionIndex
+//                alert.sender = self
+//                present(alert, animated: true)
             }
             selectedCell?.backgroundColor = .systemRed
         }

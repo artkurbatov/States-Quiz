@@ -27,7 +27,7 @@ class ContentModel {
     
     func createResultAlert(title: String, numberOfCorrectAnswers numCorrect: Int, sender: UIViewController) -> UIAlertController {
         
-        let alert = UIAlertController(title: title, message: "You have answerd \(numCorrect) question out of \(quiz.count)", preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: "You got \(numCorrect) out of \(quiz.count) questions", preferredStyle: .alert)
         
         let backAction = UIAlertAction(title: "Back to menu", style: .default) { _ in
             sender.navigationController?.popToRootViewController(animated: true)
@@ -37,8 +37,13 @@ class ContentModel {
             // create activity controller
         }
         
-        alert.addAction(backAction)
+        let playAgain = UIAlertAction(title: "Play again", style: .default) { _ in
+            // resturt the game
+        }
+        
+        alert.addAction(playAgain)
         alert.addAction(shareAction)
+        alert.addAction(backAction)
         
         return alert
     }
