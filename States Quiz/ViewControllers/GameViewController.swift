@@ -11,7 +11,6 @@ import SnapKit
 class GameViewController: UIViewController {
     
     #warning("Add activity view controller after the game ends to share user's result")
-    #warning("Move code to separate functions")
     #warning("Dark/light modes color conflict")
     #warning("Add image animations")
     
@@ -90,11 +89,38 @@ class GameViewController: UIViewController {
         }
     }
     
+    // MARK: - Game state management
+    
     private func displayNextQuestion() {
         currentQuestionIndex += 1
         model.quiz[currentQuestionIndex].answers.shuffle()
+        
+        // disappear and appear animation
+        UIView.animate(withDuration: 0.4, delay: 0.2) {
+            self.answersCollection.alpha = 0
+        } completion: { _ in
+            self.answersCollection.reloadData()
+            UIView.animate(withDuration: 0.6, delay: 0) {
+                self.answersCollection.alpha = 1
+            }
+        }
+    }
+    
+    func restartGame() {
+        currentQuestionIndex = 0
+        lifeCount = 4
+        gameTitle.text = "life count \(lifeCount)"
+        enableCellsInteraction()
+        answersCollection.reloadData()
+    }
+    
+    private func enableCellsInteraction() {
+        for path in selectedCellPaths {
+            answersCollection.cellForItem(at: path)?.isUserInteractionEnabled = true
+        }
     }
 }
+
 
 extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -144,24 +170,10 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if model.hasNext(currentIndex: currentQuestionIndex) {
                 
                 displayNextQuestion()
-                
-                // disappear and appear animation
-                UIView.animate(withDuration: 0.4, delay: 0.2) {
-                    collectionView.alpha = 0
-                } completion: { _ in
-                    self.answersCollection.reloadData()
-                    UIView.animate(withDuration: 0.6, delay: 0) {
-                        collectionView.alpha = 1
-                    }
-                }
-                // enable user interactions with cells
-                for path in selectedCellPaths {
-                    collectionView.cellForItem(at: path)?.isUserInteractionEnabled = true
-                }
+                enableCellsInteraction()
             }
             // if it was the last question present result alert
             else {
-                
                 let alert = model.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
                 present(alert, animated: true)
             }
@@ -172,14 +184,9 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             gameTitle.text = "life count \(lifeCount)"
             
             if lifeCount < 1 {
+                
                 let alert = model.createResultAlert(title: "Oops...", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
                 present(alert, animated: true)
-//                let alert = AlertViewController()
-//                alert.modalPresentationStyle = .overFullScreen
-//                alert.resultLabel.text = "Oops..."
-//                alert.numCorrect = currentQuestionIndex
-//                alert.sender = self
-//                present(alert, animated: true)
             }
             selectedCell?.backgroundColor = .systemRed
         }

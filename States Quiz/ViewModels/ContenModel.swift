@@ -25,7 +25,7 @@ class ContentModel {
         return currentIndex + 1 < quiz.count
     }
     
-    func createResultAlert(title: String, numberOfCorrectAnswers numCorrect: Int, sender: UIViewController) -> UIAlertController {
+    func createResultAlert(title: String, numberOfCorrectAnswers numCorrect: Int, sender: GameViewController) -> UIAlertController {
         
         let alert = UIAlertController(title: title, message: "You got \(numCorrect) out of \(quiz.count) questions", preferredStyle: .alert)
         
@@ -38,7 +38,8 @@ class ContentModel {
         }
         
         let playAgain = UIAlertAction(title: "Play again", style: .default) { _ in
-            // resturt the game
+            
+            sender.restartGame()
         }
         
         alert.addAction(playAgain)
