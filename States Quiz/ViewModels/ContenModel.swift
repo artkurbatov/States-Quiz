@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 class ContentModel {
     
@@ -54,5 +55,13 @@ class ContentModel {
         
         let activityController = UIActivityViewController(activityItems: ["Hello"], applicationActivities: [])
         return activityController
+    }
+    
+    func createButton(title: String) -> UIButton {
+        let button = UIButton()
+        button.configuration = .tinted()
+        button.configuration?.title = title
+        button.configuration?.cornerStyle = .medium
+        return button
     }
 }

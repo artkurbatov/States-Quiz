@@ -108,6 +108,7 @@ class GameViewController: UIViewController {
     
     func restartGame() {
         currentQuestionIndex = 0
+        model.quiz.shuffle()
         lifeCount = 4
         gameTitle.text = "life count \(lifeCount)"
         enableCellsInteraction()

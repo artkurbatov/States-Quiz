@@ -10,24 +10,30 @@ import SnapKit
 
 class AlertViewController: UIViewController {
     
-    #warning("Remove later")
+    #warning("Share button placement")
     
-    private var alertView = UIView()
+    private let alertView = UIView()
     
-    private var menuButton = UIButton()
-    private var shareButton = UIButton()
-    private var playAgainButton = UIButton()
-    private var stackView = UIStackView()
+    private let menuButton: UIButton
+    private let shareButton: UIButton
+    private let playAgainButton: UIButton
     
-    private var scoreLable = UILabel()
-    private var resultLabel = UILabel()
+    private let stackView = UIStackView()
     
+    private let scoreLable = UILabel()
+    private let resultLabel = UILabel()
+
+    let resultText: String
+    let numCorrect: Int
+    let sender: GameViewController
     
-    var resultText: String
-    var numCorrect: Int
-    var sender: GameViewController
+    let model = ContentModel()
     
     init(resultText: String, numCorrect: Int, sender: GameViewController) {
+        
+        self.menuButton = model.createButton(title: "Back to menu")
+        self.shareButton = model.createButton(title: "Share")
+        self.playAgainButton = model.createButton(title: "Play again")
         
         self.resultText = resultText
         self.numCorrect = numCorrect
@@ -42,13 +48,15 @@ class AlertViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        menuButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
+        //shareButton.addTarget(self, action: #selector(), for: .touchUpInside)
+        playAgainButton.addTarget(self, action: #selector(playAgainAction), for: .touchUpInside)
     
         setUpAlert()
         setUpResultLabel()
         setUpStackView()
-        setUpGoToMenuButton()
-        setUpShareButton()
-        setUpPlayAgainButton()
+        setButtonConstraints()
     }
     
     
@@ -56,6 +64,8 @@ class AlertViewController: UIViewController {
         
         view.addSubview(alertView)
         alertView.backgroundColor = .systemBackground
+        alertView.layer.borderWidth = 1
+        alertView.layer.borderColor = UIColor.white.cgColor
         alertView.layer.cornerRadius = 20
         alertView.layer.masksToBounds = true
         
@@ -83,7 +93,7 @@ class AlertViewController: UIViewController {
         
         alertView.addSubview(stackView)
         stackView.addArrangedSubview(menuButton)
-        stackView.addArrangedSubview(shareButton)
+        //stackView.addArrangedSubview(shareButton)
         stackView.addArrangedSubview(playAgainButton)
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
@@ -96,57 +106,16 @@ class AlertViewController: UIViewController {
         }
     }
     
-    private func setUpGoToMenuButton() {
+    private func setButtonConstraints() {
         
-        
-        // TODO: Change button style
-        menuButton.backgroundColor = .blue
-        menuButton.setTitle("Menu", for: .normal)
-        menuButton.layer.cornerRadius = 10
-        menuButton.layer.masksToBounds = true
-        
-        menuButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
-        
-        menuButton.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.width.equalToSuperview().multipliedBy(0.3)
-        }
-    }
-    
-    private func setUpShareButton() {
-        
-        
-        // TODO: Change button style
-        //alertView.addSubview(goToManuButton)
-        shareButton.backgroundColor = .blue
-        shareButton.setTitle("Share", for: .normal)
-        shareButton.layer.cornerRadius = 10
-        shareButton.layer.masksToBounds = true
-        
-        shareButton.snp.makeConstraints { make in
-            make.height.equalTo(40)
-            make.width.equalToSuperview().multipliedBy(0.3)
+        for button in [menuButton, playAgainButton] {
+            
+            button.snp.makeConstraints { make in
+                make.height.equalTo(40)
+                make.width.equalToSuperview().multipliedBy(0.45)
+            }
         }
         
-        // add activity controller
-    }
-    
-    private func setUpPlayAgainButton() {
-        
-        
-        // TODO: Change button style
-        //alertView.addSubview(goToManuButton)
-        playAgainButton.backgroundColor = .blue
-        playAgainButton.setTitle("Play again", for: .normal)
-        playAgainButton.layer.cornerRadius = 10
-        playAgainButton.layer.masksToBounds = true
-        
-        playAgainButton.addTarget(self, action: #selector(playAgainAction), for: .touchUpInside)
-        
-        playAgainButton.snp.makeConstraints { make in
-            make.height.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.3)
-        }
     }
     
     // MARK: - Button actions
