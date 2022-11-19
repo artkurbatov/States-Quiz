@@ -20,11 +20,25 @@ class AlertViewController: UIViewController {
     private var stackView = UIStackView()
     
     private var scoreLable = UILabel()
-    var resultLabel = UILabel()
+    private var resultLabel = UILabel()
     
-    var sender: UIViewController?
-    var numCorrect: Int?
-
+    
+    var resultText: String
+    var numCorrect: Int
+    var sender: GameViewController
+    
+    init(resultText: String, numCorrect: Int, sender: GameViewController) {
+        
+        self.resultText = resultText
+        self.numCorrect = numCorrect
+        self.sender = sender
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -55,6 +69,7 @@ class AlertViewController: UIViewController {
     private func setUpResultLabel() {
         
         alertView.addSubview(resultLabel)
+        resultLabel.text = resultText
         resultLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         resultLabel.textAlignment = .center
                 
@@ -85,11 +100,11 @@ class AlertViewController: UIViewController {
         
         
         // TODO: Change button style
-       // alertView.addSubview(goToManuButton)
         menuButton.backgroundColor = .blue
         menuButton.setTitle("Menu", for: .normal)
         menuButton.layer.cornerRadius = 10
         menuButton.layer.masksToBounds = true
+        
         menuButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
         
         menuButton.snp.makeConstraints { make in
@@ -126,6 +141,8 @@ class AlertViewController: UIViewController {
         playAgainButton.layer.cornerRadius = 10
         playAgainButton.layer.masksToBounds = true
         
+        playAgainButton.addTarget(self, action: #selector(playAgainAction), for: .touchUpInside)
+        
         playAgainButton.snp.makeConstraints { make in
             make.height.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.3)
@@ -135,7 +152,14 @@ class AlertViewController: UIViewController {
     // MARK: - Button actions
     
     @objc private func menuAction() {
-        dismiss(animated: true)
-        sender?.navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: true) {
+            self.sender.navigationController?.popToRootViewController(animated: true)
+        }
+    }
+    
+    @objc private func playAgainAction() {
+        dismiss(animated: true) {
+            self.sender.restartGame()
+        }
     }
 }

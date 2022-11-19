@@ -34,11 +34,12 @@ class ContentModel {
         }
         
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
-            // create activity controller
+            let shareController = self.createActivityController()
+            //shareController.popoverPresentationController?.sourceItem =
+            sender.present(shareController, animated: true)
         }
         
         let playAgain = UIAlertAction(title: "Play again", style: .default) { _ in
-            
             sender.restartGame()
         }
         
@@ -49,9 +50,9 @@ class ContentModel {
         return alert
     }
     
-//    func createActivityController() -> UIActivityViewController {
-//        
-//        let activityController = UIActivityViewController(activityItems: <#T##[Any]#>, applicationActivities: <#T##[UIActivity]?#>)
-//        return activityController
-//    }
+    func createActivityController() -> UIActivityViewController {
+        
+        let activityController = UIActivityViewController(activityItems: ["Hello"], applicationActivities: [])
+        return activityController
+    }
 }
