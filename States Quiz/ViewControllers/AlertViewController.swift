@@ -10,8 +10,6 @@ import SnapKit
 
 class AlertViewController: UIViewController {
     
-    #warning("Share button placement")
-    
     private let alertView = UIView()
     
     private let menuButton: UIButton
@@ -95,8 +93,8 @@ class AlertViewController: UIViewController {
         messageLabel.textAlignment = .center
                 
         messageLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.top.equalTo(resultLabel.snp.bottom).offset(10)
         }
     }
@@ -123,7 +121,7 @@ class AlertViewController: UIViewController {
         
         shareButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(menuButton.snp.top).offset(-20)
+            make.bottom.equalTo(menuButton.snp.top).offset(-50)
             make.height.equalTo(40)
             make.width.equalToSuperview().multipliedBy(0.3)
         }
