@@ -57,11 +57,11 @@ class ContentModel {
         return activityController
     }
     
-    func createButton(title: String) -> UIButton {
+    func createButton(title: String, cornerStyle: UIButton.Configuration.CornerStyle) -> UIButton {
         let button = UIButton()
         button.configuration = .tinted()
         button.configuration?.title = title
-        button.configuration?.cornerStyle = .medium
+        button.configuration?.cornerStyle = cornerStyle
         return button
     }
 }

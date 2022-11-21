@@ -22,20 +22,21 @@ class AlertViewController: UIViewController {
     
     private let scoreLable = UILabel()
     private let resultLabel = UILabel()
+    private let messageLabel = UILabel()
 
-    let resultText: String
     let numCorrect: Int
     let sender: GameViewController
     
     let model = ContentModel()
     
-    init(resultText: String, numCorrect: Int, sender: GameViewController) {
+    init(resultText: String, numCorrect: Int, sender: GameViewController, messageText: String) {
         
-        self.menuButton = model.createButton(title: "Back to menu")
-        self.shareButton = model.createButton(title: "Share")
-        self.playAgainButton = model.createButton(title: "Play again")
+        self.menuButton = model.createButton(title: "Back to menu", cornerStyle: .medium)
+        self.shareButton = model.createButton(title: "Share", cornerStyle: .capsule)
+        self.playAgainButton = model.createButton(title: "Play again", cornerStyle: .medium)
         
-        self.resultText = resultText
+        self.resultLabel.text = resultText
+        self.messageLabel.text = messageText
         self.numCorrect = numCorrect
         self.sender = sender
         super.init(nibName: nil, bundle: nil)
@@ -55,10 +56,11 @@ class AlertViewController: UIViewController {
     
         setUpAlert()
         setUpResultLabel()
+        setUpMessageLabel()
         setUpStackView()
+        setUpShareButton()
         setButtonConstraints()
     }
-    
     
     private func setUpAlert() {
         
@@ -79,7 +81,6 @@ class AlertViewController: UIViewController {
     private func setUpResultLabel() {
         
         alertView.addSubview(resultLabel)
-        resultLabel.text = resultText
         resultLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         resultLabel.textAlignment = .center
                 
@@ -89,11 +90,24 @@ class AlertViewController: UIViewController {
         }
     }
     
+    private func setUpMessageLabel() {
+        
+        alertView.addSubview(messageLabel)
+        messageLabel.text = "Message"
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+                
+        messageLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalTo(resultLabel.snp.bottom).offset(5)
+        }
+    }
+    
     private func setUpStackView() {
         
         alertView.addSubview(stackView)
         stackView.addArrangedSubview(menuButton)
-        //stackView.addArrangedSubview(shareButton)
         stackView.addArrangedSubview(playAgainButton)
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
@@ -106,6 +120,18 @@ class AlertViewController: UIViewController {
         }
     }
     
+    private func setUpShareButton() {
+        
+        alertView.addSubview(shareButton)
+        
+        shareButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(menuButton.snp.top).offset(-20)
+            make.height.equalTo(40)
+            make.width.equalToSuperview().multipliedBy(0.3)
+        }
+    }
+    
     private func setButtonConstraints() {
         
         for button in [menuButton, playAgainButton] {
@@ -115,7 +141,6 @@ class AlertViewController: UIViewController {
                 make.width.equalToSuperview().multipliedBy(0.45)
             }
         }
-        
     }
     
     // MARK: - Button actions

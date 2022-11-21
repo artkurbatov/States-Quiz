@@ -176,7 +176,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             // if it was the last question present result alert
             else {
                 //let alert = model.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
-                let alert = AlertViewController(resultText: "Congratulations!", numCorrect: currentQuestionIndex+1, sender: self)
+                let alert = AlertViewController(resultText: "Congratulations!", numCorrect: currentQuestionIndex+1, sender: self, messageText: "Message")
                 alert.modalPresentationStyle = .overFullScreen
                 present(alert, animated: true)
             }
@@ -189,7 +189,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if lifeCount < 1 {
                 
                // let alert = model.createResultAlert(title: "Oops...", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
-                let alert = AlertViewController(resultText: "Oops...", numCorrect: currentQuestionIndex, sender: self)
+                let alert = AlertViewController(resultText: "Oops...", numCorrect: currentQuestionIndex, sender: self, messageText: "Message")
                 alert.modalPresentationStyle = .overFullScreen
                 present(alert, animated: true)
             }
