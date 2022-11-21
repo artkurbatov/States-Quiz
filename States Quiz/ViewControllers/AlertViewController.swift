@@ -24,20 +24,18 @@ class AlertViewController: UIViewController {
     private let resultLabel = UILabel()
     private let messageLabel = UILabel()
 
-    let numCorrect: Int
     let sender: GameViewController
     
     let model = ContentModel()
     
-    init(resultText: String, numCorrect: Int, sender: GameViewController, messageText: String) {
+    init(resultText: String, numCorrect: Int, sender: GameViewController) {
         
         self.menuButton = model.createButton(title: "Back to menu", cornerStyle: .medium)
         self.shareButton = model.createButton(title: "Share", cornerStyle: .capsule)
         self.playAgainButton = model.createButton(title: "Play again", cornerStyle: .medium)
         
         self.resultLabel.text = resultText
-        self.messageLabel.text = messageText
-        self.numCorrect = numCorrect
+        self.messageLabel.text = "You got \(numCorrect) out of \(model.quiz.count) questions correctly"
         self.sender = sender
         super.init(nibName: nil, bundle: nil)
     }
@@ -93,14 +91,13 @@ class AlertViewController: UIViewController {
     private func setUpMessageLabel() {
         
         alertView.addSubview(messageLabel)
-        messageLabel.text = "Message"
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
                 
         messageLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(resultLabel.snp.bottom).offset(5)
+            make.top.equalTo(resultLabel.snp.bottom).offset(10)
         }
     }
     
