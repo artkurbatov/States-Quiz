@@ -147,8 +147,7 @@ class AlertViewController: UIViewController {
     }
     
     @objc private func playAgainAction() {
-        dismiss(animated: true) {
-            self.sender.restartGame()
-        }
+        sender.restartGame()
+        dismiss(animated: true)
     }
 }
