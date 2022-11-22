@@ -14,16 +14,22 @@ class GameViewController: UIViewController {
     #warning("Dark/light modes color conflict")
     #warning("Add image animations")
     
-    private var gameTitle = UILabel()
-    private var mapView = UIImageView()
+    private let mapView = UIImageView()
     
-    private var model = ContentModel()
+    private let statuesStack = UIStackView()
+    private var statues = [UIImageView]()
+    private let statue1 = UIImageView()
+    private let statue2 = UIImageView()
+    private let statue3 = UIImageView()
+    private let statue4 = UIImageView()
+    
+    private let model = ContentModel()
     private var currentQuestionIndex = 0
-    private var lifeCount = 4
+    private var mistakeCounter = 0
     
     private var selectedCellPaths = Set<IndexPath>()
     
-    private var answersCollection: UICollectionView = {
+    private let answersCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(AnswerCollectionViewCell.self, forCellWithReuseIdentifier: "answerCell")
@@ -35,33 +41,47 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
+        navigationItem.title = "\(currentQuestionIndex) of \(model.quiz.count)"
         
         answersCollection.delegate = self
         answersCollection.dataSource = self
         
         // configure views
-        configureTitle()
+        setUpHearts()
         configureMap()
         configureCollection()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     
     // MARK: - Configure views and set constraints
     
-    private func configureTitle() {
+    private func setUpHearts() {
         
-        view.addSubview(gameTitle)
+        view.addSubview(statuesStack)
+        statuesStack.axis = .horizontal
+        statuesStack.distribution = .equalSpacing
         
-        gameTitle.snp.makeConstraints { make in
-            make.top.leading.equalTo(view.safeAreaLayoutGuide)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-20)
-            make.centerX.equalToSuperview()
+        for statue in [statue1, statue2, statue3, statue4] {
+            
+            statuesStack.addArrangedSubview(statue)
+            statues.append(statue)
+            statue.image = UIImage(named: "statue")
+            
+            statue.snp.makeConstraints { make in
+                make.width.height.equalTo(30)
+            }
         }
         
-        gameTitle.textAlignment = .center
-        gameTitle.numberOfLines = 0
-        //gameTitle.text = "Game"
-        gameTitle.text = "life count \(lifeCount)"
+        statuesStack.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.trailing.equalToSuperview().offset(-20)
+            make.width.equalToSuperview().multipliedBy(0.3)
+            make.height.equalTo(30)
+        }
     }
     
     private func configureMap() {
@@ -71,7 +91,7 @@ class GameViewController: UIViewController {
         mapView.snp.makeConstraints { make in
             make.height.equalToSuperview().multipliedBy(0.4)
             make.width.equalToSuperview()
-            make.top.equalTo(gameTitle.snp.bottom).offset(20)
+            make.top.equalTo(statuesStack.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
         
@@ -102,6 +122,7 @@ class GameViewController: UIViewController {
             self.answersCollection.reloadData()
             UIView.animate(withDuration: 0.6, delay: 0) {
                 self.answersCollection.alpha = 1
+                self.navigationItem.title = "\(self.currentQuestionIndex) of \(self.model.quiz.count)"
             }
         }
     }
@@ -109,9 +130,12 @@ class GameViewController: UIViewController {
     func restartGame() {
         currentQuestionIndex = 0
         model.quiz.shuffle()
-        lifeCount = 4
-        gameTitle.text = "life count \(lifeCount)"
+        mistakeCounter = 0
+        for statue in statues {
+            statue.alpha = 1
+        }
         enableCellsInteraction()
+        navigationItem.title = "\(currentQuestionIndex) of \(model.quiz.count)"
         answersCollection.reloadData()
     }
     
@@ -175,20 +199,19 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             // if it was the last question present result alert
             else {
-                let alert = AlertViewController(resultText: "Congratulations!", numCorrect: currentQuestionIndex+1, sender: self)
-                alert.modalPresentationStyle = .overFullScreen
+                
+                let alert = model.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
                 present(alert, animated: true)
             }
         }
         // if answer is wrong
         else {
-            lifeCount -= 1
-            gameTitle.text = "life count \(lifeCount)"
+            statues[mistakeCounter].alpha = 0
+            mistakeCounter += 1
             
-            if lifeCount < 1 {
+            if mistakeCounter >= 4 {
                 
-                let alert = AlertViewController(resultText: "Oops...", numCorrect: currentQuestionIndex, sender: self)
-                alert.modalPresentationStyle = .overFullScreen
+                let alert = model.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
                 present(alert, animated: true)
             }
             selectedCell?.backgroundColor = .systemRed

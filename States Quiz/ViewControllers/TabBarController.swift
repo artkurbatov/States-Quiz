@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         
         let menuVC = UINavigationController(rootViewController: MenuViewController())
         let settingsVC = UINavigationController(rootViewController: SettingsViewController())
-        
+                
         menuVC.tabBarItem.image = UIImage(systemName: "list.bullet")
         menuVC.tabBarItem.title = "Games"
         settingsVC.tabBarItem.image = UIImage(systemName: "gear")

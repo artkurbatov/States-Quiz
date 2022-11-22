@@ -35,9 +35,10 @@ class ContentModel {
         }
         
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
-            let shareController = self.createActivityController()
+            let shareController = self.createActivityController(score: numCorrect)
             //shareController.popoverPresentationController?.sourceItem =
             sender.present(shareController, animated: true)
+            sender.navigationController?.popToRootViewController(animated: true)
         }
         
         let playAgain = UIAlertAction(title: "Play again", style: .default) { _ in
@@ -51,9 +52,9 @@ class ContentModel {
         return alert
     }
     
-    func createActivityController() -> UIActivityViewController {
+    func createActivityController(score: Int) -> UIActivityViewController {
         
-        let activityController = UIActivityViewController(activityItems: ["Hello"], applicationActivities: [])
+        let activityController = UIActivityViewController(activityItems: ["I got \(score) out of \(quiz.count) questions correctly! Check it out!"], applicationActivities: [])
         return activityController
     }
     

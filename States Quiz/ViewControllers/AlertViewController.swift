@@ -23,7 +23,7 @@ class AlertViewController: UIViewController {
     private let messageLabel = UILabel()
 
     let sender: GameViewController
-    
+    let numCorrect: Int
     let model = ContentModel()
     
     init(resultText: String, numCorrect: Int, sender: GameViewController) {
@@ -31,9 +31,8 @@ class AlertViewController: UIViewController {
         self.menuButton = model.createButton(title: "Back to menu", cornerStyle: .medium)
         self.shareButton = model.createButton(title: "Share", cornerStyle: .capsule)
         self.playAgainButton = model.createButton(title: "Play again", cornerStyle: .medium)
-        
+        self.numCorrect = numCorrect
         self.resultLabel.text = resultText
-        self.messageLabel.text = "You got \(numCorrect) out of \(model.quiz.count) questions correctly"
         self.sender = sender
         super.init(nibName: nil, bundle: nil)
     }
@@ -46,10 +45,6 @@ class AlertViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-        menuButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
-        //shareButton.addTarget(self, action: #selector(), for: .touchUpInside)
-        playAgainButton.addTarget(self, action: #selector(playAgainAction), for: .touchUpInside)
-    
         setUpAlert()
         setUpResultLabel()
         setUpMessageLabel()
@@ -89,6 +84,7 @@ class AlertViewController: UIViewController {
     private func setUpMessageLabel() {
         
         alertView.addSubview(messageLabel)
+        messageLabel.text = "You got \(numCorrect) out of \(model.quiz.count) questions correctly"
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
                 
@@ -98,6 +94,8 @@ class AlertViewController: UIViewController {
             make.top.equalTo(resultLabel.snp.bottom).offset(10)
         }
     }
+    
+    // MARK: - Buttons Configuration
     
     private func setUpStackView() {
         
@@ -115,19 +113,11 @@ class AlertViewController: UIViewController {
         }
     }
     
-    private func setUpShareButton() {
-        
-        alertView.addSubview(shareButton)
-        
-        shareButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(menuButton.snp.top).offset(-50)
-            make.height.equalTo(40)
-            make.width.equalToSuperview().multipliedBy(0.3)
-        }
-    }
-    
     private func setButtonConstraints() {
+        
+        menuButton.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(shareButtonAction), for: .touchUpInside)
+        playAgainButton.addTarget(self, action: #selector(playAgainAction), for: .touchUpInside)
         
         for button in [menuButton, playAgainButton] {
             
@@ -137,7 +127,20 @@ class AlertViewController: UIViewController {
             }
         }
     }
-    
+
+    private func setUpShareButton() {
+        
+        alertView.addSubview(shareButton)
+        shareButton.addTarget(self, action: #selector(shareButtonAction), for: .touchUpInside)
+        
+        shareButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(menuButton.snp.top).offset(-50)
+            make.height.equalTo(40)
+            make.width.equalToSuperview().multipliedBy(0.3)
+        }
+    }
+        
     // MARK: - Button actions
     
     @objc private func menuAction() {
@@ -149,5 +152,12 @@ class AlertViewController: UIViewController {
     @objc private func playAgainAction() {
         sender.restartGame()
         dismiss(animated: true)
+    }
+    
+    @objc private func shareButtonAction() {
+        let share = model.createActivityController(score: numCorrect)
+        //share.popoverPresentationController?.sourceItem =
+        #warning("iPad bug")
+        present(share, animated: true)
     }
 }

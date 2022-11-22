@@ -20,11 +20,16 @@ class MenuViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         navigationItem.backButtonTitle = ""
+        navigationItem.title = "Let's play"
         
         //gameModeTableView.delegate = self
         //gameModeTableView.dataSource = self
         
         setUpButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
             
     private func setUpButton() {
