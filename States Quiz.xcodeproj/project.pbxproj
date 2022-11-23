@@ -12,6 +12,7 @@
 		B858C38E291D1EA900DC1559 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858C38D291D1EA900DC1559 /* Quiz.swift */; };
 		B858C390291D2D3100DC1559 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858C38F291D2D3100DC1559 /* GameViewController.swift */; };
 		B858C396291D2EED00DC1559 /* ContenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858C395291D2EED00DC1559 /* ContenModel.swift */; };
+		B8613166292E8073007C4953 /* GameHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8613165292E8073007C4953 /* GameHistoryViewController.swift */; };
 		B88AB0002924F8BE0039DCF9 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88AAFFF2924F8BE0039DCF9 /* AlertViewController.swift */; };
 		B8A23BE4291EDF9A009B2E6F /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A23BE3291EDF9A009B2E6F /* AnswerCollectionViewCell.swift */; };
 		B8E2B18B2915754D001BFEF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2B18A2915754D001BFEF0 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 		B858C38D291D1EA900DC1559 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		B858C38F291D2D3100DC1559 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		B858C395291D2EED00DC1559 /* ContenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContenModel.swift; sourceTree = "<group>"; };
+		B8613165292E8073007C4953 /* GameHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHistoryViewController.swift; sourceTree = "<group>"; };
 		B88AAFFF2924F8BE0039DCF9 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		B8A23BE3291EDF9A009B2E6F /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		B8E2B1872915754D001BFEF0 /* States Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "States Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +99,7 @@
 				B858C38F291D2D3100DC1559 /* GameViewController.swift */,
 				B88AAFFF2924F8BE0039DCF9 /* AlertViewController.swift */,
 				B809A7D029157945001CEEB7 /* SettingsViewController.swift */,
+				B8613165292E8073007C4953 /* GameHistoryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A23BE4291EDF9A009B2E6F /* AnswerCollectionViewCell.swift in Sources */,
+				B8613166292E8073007C4953 /* GameHistoryViewController.swift in Sources */,
 				B8E2B1952915754D001BFEF0 /* States_Quiz.xcdatamodeld in Sources */,
 				B809A7CF29157919001CEEB7 /* MenuViewController.swift in Sources */,
 				B8E2B18F2915754D001BFEF0 /* TabBarController.swift in Sources */,
