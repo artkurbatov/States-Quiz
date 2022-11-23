@@ -21,6 +21,13 @@ class ContentModel {
         quiz.shuffle()
     }
     
+    func createTab(rootview: UIViewController, title: String, image: String) -> UINavigationController {
+        let vc = UINavigationController(rootViewController: rootview)
+        vc.tabBarItem.image = UIImage(systemName: image)
+        vc.tabBarItem.title = title
+        return vc
+    }
+    
     func hasNext(currentIndex: Int) -> Bool {
         
         return currentIndex + 1 < quiz.count

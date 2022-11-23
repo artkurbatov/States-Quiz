@@ -9,21 +9,13 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
+    private let model = ContentModel()
     
-    #warning("Change icons")
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let menuVC = UINavigationController(rootViewController: MenuViewController())
-       // let settingsVC = UINavigationController(rootViewController: SettingsViewController())
-        let historyVC = UINavigationController(rootViewController: GameViewController())
-                
-        menuVC.tabBarItem.image = UIImage(systemName: "list.bullet")
-        menuVC.tabBarItem.title = "Games"
-        //settingsVC.tabBarItem.image = UIImage(systemName: "gear")
-        //settingsVC.tabBarItem.title = "Settings"
-        historyVC.tabBarItem.image = UIImage(systemName: "list.star")
-        historyVC.tabBarItem.title = "History"
+        let menuVC = model.createTab(rootview: MenuViewController(), title: "Games", image: "list.bullet")
+        let historyVC = model.createTab(rootview: GameHistoryViewController(), title: "History", image: "list.star")
         
         setViewControllers([menuVC, historyVC], animated: true)
     }
