@@ -24,7 +24,7 @@ class AlertViewController: UIViewController {
 
     let sender: GameViewController
     let numCorrect: Int
-    let model = ContentModel()
+    let model = QuizModel()
     
     init(resultText: String, numCorrect: Int, sender: GameViewController) {
         

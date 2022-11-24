@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class ContentModel {
+class QuizModel {
     
     var quiz = [Quiz]()
     

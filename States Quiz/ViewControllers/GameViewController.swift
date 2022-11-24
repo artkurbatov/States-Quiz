@@ -23,7 +23,7 @@ class GameViewController: UIViewController {
     private let statue3 = UIImageView()
     private let statue4 = UIImageView()
     
-    private let model = ContentModel()
+    private let model = QuizModel()
     private var currentQuestionIndex = 0
     private var mistakeCounter = 0
     
@@ -79,7 +79,7 @@ class GameViewController: UIViewController {
         statuesStack.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().multipliedBy(0.3)
+            make.width.equalToSuperview().multipliedBy(0.35)
             make.height.equalTo(30)
         }
     }

@@ -9,13 +9,13 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
-    private let model = ContentModel()
+    private let model = QuizModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let menuVC = model.createTab(rootview: MenuViewController(), title: "Games", image: "list.bullet")
-        let historyVC = model.createTab(rootview: GameHistoryViewController(), title: "History", image: "list.star")
+        let menuVC = model.createTab(rootview: MenuViewController(), title: "Games", image: "gamecontroller")
+        let historyVC = model.createTab(rootview: ResultsViewController(), title: "Results", image: "list.star")
         
         setViewControllers([menuVC, historyVC], animated: true)
     }
