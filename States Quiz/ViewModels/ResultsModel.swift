@@ -9,4 +9,7 @@ import Foundation
 
 class ResultsModel {
     
+    var results = [Result]()
+    
+    
 }

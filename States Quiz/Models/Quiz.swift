@@ -10,7 +10,6 @@ import UIKit
 
 struct Quiz {
     
-    var id: Int
     var image: String
     var answers: [String]
     var correctAnswer: String

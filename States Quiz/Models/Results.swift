@@ -10,5 +10,5 @@ import Foundation
 struct Result {
     
     var id = UUID()
-    var result: String
+    var gameTitle: String
 }
