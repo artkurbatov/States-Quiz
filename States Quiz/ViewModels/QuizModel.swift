@@ -28,7 +28,7 @@ class QuizModel {
         quiz.append(Quiz(image: "test", answers: ["Hawaii", "Florida", "Louisiana", "Michigan"], correctAnswer: "Hawaii"))
         quiz.append(Quiz(image: "test", answers: ["Idaho", "Nevada", "Oregon", "Montana"], correctAnswer: "Idaho"))
         quiz.append(Quiz(image: "test", answers: ["Illinois", "Missouri", "Iowa", "Indiana"], correctAnswer: "Illinois"))
-        quiz.append(Quiz(image: "test", answers: ["Indiana", "Missouri", "Ohio", "Indiana"], correctAnswer: "Indiana"))
+        quiz.append(Quiz(image: "test", answers: ["Indiana", "Missouri", "Ohio", "Illinois"], correctAnswer: "Indiana"))
         quiz.append(Quiz(image: "test", answers: ["Iowa", "Nebraska", "Wisconsin", "Kansas"], correctAnswer: "Iowa"))
         quiz.append(Quiz(image: "test", answers: ["Kentucky", "Tennessee", "Virginia", "North Carolina"], correctAnswer: "Kentucky"))
         quiz.append(Quiz(image: "test", answers: ["Louisiana", "Arkansas", "Mississippi", "Alabama"], correctAnswer: "Louisiana"))
