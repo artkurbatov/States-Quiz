@@ -41,7 +41,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        navigationItem.title = "\(currentQuestionIndex) of \(model.quiz.count)"
+        navigationItem.title = "\(currentQuestionIndex+1) of \(model.quiz.count)"
         
         answersCollection.delegate = self
         answersCollection.dataSource = self
@@ -122,7 +122,7 @@ class GameViewController: UIViewController {
             self.answersCollection.reloadData()
             UIView.animate(withDuration: 0.6, delay: 0) {
                 self.answersCollection.alpha = 1
-                self.navigationItem.title = "\(self.currentQuestionIndex) of \(self.model.quiz.count)"
+                self.navigationItem.title = "\(self.currentQuestionIndex+1) of \(self.model.quiz.count)"
             }
         }
     }
@@ -135,7 +135,7 @@ class GameViewController: UIViewController {
             statue.alpha = 1
         }
         enableCellsInteraction()
-        navigationItem.title = "\(currentQuestionIndex) of \(model.quiz.count)"
+        navigationItem.title = "\(currentQuestionIndex+1) of \(model.quiz.count)"
         answersCollection.reloadData()
     }
     
