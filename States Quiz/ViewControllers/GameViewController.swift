@@ -95,7 +95,7 @@ class GameViewController: UIViewController {
             make.centerX.equalToSuperview()
         }
         
-        mapView.image = UIImage(named: "test")
+        mapView.image = UIImage(named: "cali")
     }
     
     private func configureCollection() {
