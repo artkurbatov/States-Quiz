@@ -12,7 +12,6 @@ class AnswerCollectionViewCell: UICollectionViewCell {
     
     private var label = UILabel()
     
-    
     func configureCell(text: String) {
         
         addSubview(label)
@@ -29,8 +28,7 @@ class AnswerCollectionViewCell: UICollectionViewCell {
         
         layer.cornerRadius = 10
         layer.masksToBounds = true
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = self.traitCollection.userInterfaceStyle == .dark ? UIColor.white.cgColor : UIColor.black.cgColor
         layer.borderWidth = 1
     }
-    
 }

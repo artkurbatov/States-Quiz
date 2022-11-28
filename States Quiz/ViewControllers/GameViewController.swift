@@ -89,13 +89,17 @@ class GameViewController: UIViewController {
         view.addSubview(mapView)
         
         mapView.snp.makeConstraints { make in
-            make.height.equalToSuperview().multipliedBy(0.4)
+            make.height.equalToSuperview().multipliedBy(0.35)
             make.width.equalToSuperview()
-            make.top.equalTo(statuesStack.snp.bottom).offset(20)
+            make.top.equalTo(statuesStack.snp.bottom).offset(40)
             make.centerX.equalToSuperview()
         }
         
-        mapView.image = UIImage(named: "test 1")
+        updateMap()
+    }
+    
+    private func updateMap() {
+        mapView.image = UIImage(named: model.quiz[currentQuestionIndex].image)
     }
     
     private func configureCollection() {
@@ -125,6 +129,7 @@ class GameViewController: UIViewController {
                 self.navigationItem.title = "\(self.currentQuestionIndex+1) of \(self.model.quiz.count)"
             }
         }
+        updateMap()
     }
     
     func restartGame() {
@@ -137,6 +142,7 @@ class GameViewController: UIViewController {
         enableCellsInteraction()
         navigationItem.title = "\(currentQuestionIndex+1) of \(model.quiz.count)"
         answersCollection.reloadData()
+        updateMap()
     }
     
     private func enableCellsInteraction() {
@@ -206,14 +212,14 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         // if answer is wrong
         else {
-            statues[mistakeCounter].alpha = 0
-            mistakeCounter += 1
+            //statues[mistakeCounter].alpha = 0
+            //mistakeCounter += 1
             
-            if mistakeCounter >= 4 {
-                
-                let alert = model.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
-                present(alert, animated: true)
-            }
+//            if mistakeCounter >= 4 {
+//
+//                let alert = model.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
+//                present(alert, animated: true)
+//            }
             selectedCell?.backgroundColor = .systemRed
         }
     }
