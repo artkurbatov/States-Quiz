@@ -21,11 +21,21 @@ class QuizModel {
         quiz.append(Quiz(image: "AR", answers: ["Arkansas", "Oklahoma", "Missouri", "Kansas"], correctAnswer: "Arkansas"))
         quiz.append(Quiz(image: "CA", answers: ["California", "Nevada", "Florida", "Idaho"], correctAnswer: "California"))
         quiz.append(Quiz(image: "CO", answers: ["Colorado", "Utah", "Wyoming", "New Mexico"], correctAnswer: "Colorado"))
+        
+        
         quiz.append(Quiz(image: "CT", answers: ["Connecticut", "Massachusetts", "Rhode Island", "New Jersey"], correctAnswer: "Connecticut"))
+        
         quiz.append(Quiz(image: "DE", answers: ["Delaware", "Connecticut", "Rhode Island", "Massachusetts"], correctAnswer: "Delaware"))
+        
+        
         quiz.append(Quiz(image: "FL", answers: ["Florida", "Texas", "Hawaii", "Illinois"], correctAnswer: "Florida"))
         quiz.append(Quiz(image: "GA", answers: ["Georgia", "Alabama", "Mississippi", "South Carolina"], correctAnswer: "Georgia"))
+        
+        
         quiz.append(Quiz(image: "HI", answers: ["Hawaii", "Florida", "Louisiana", "Michigan"], correctAnswer: "Hawaii"))
+        
+        
+        
         quiz.append(Quiz(image: "ID", answers: ["Idaho", "Nevada", "Oregon", "Montana"], correctAnswer: "Idaho"))
         quiz.append(Quiz(image: "IL", answers: ["Illinois", "Missouri", "Iowa", "Indiana"], correctAnswer: "Illinois"))
         quiz.append(Quiz(image: "IN", answers: ["Indiana", "Missouri", "Ohio", "Illinois"], correctAnswer: "Indiana"))
@@ -33,8 +43,13 @@ class QuizModel {
         quiz.append(Quiz(image: "KS", answers: ["Kansas", "Iowa", "Colorado", "Nebraska"], correctAnswer: "Kansas"))
         quiz.append(Quiz(image: "KY", answers: ["Kentucky", "Tennessee", "Virginia", "North Carolina"], correctAnswer: "Kentucky"))
         quiz.append(Quiz(image: "LA", answers: ["Louisiana", "Arkansas", "Mississippi", "Alabama"], correctAnswer: "Louisiana"))
+        
         quiz.append(Quiz(image: "ME", answers: ["Maine", "Vermont", "New Hampshire", "Idaho"], correctAnswer: "Maine"))
+        
+        
         quiz.append(Quiz(image: "MD", answers: ["Maryland", "New Hampshire", "Delaware", "New Jersey"], correctAnswer: "Maryland"))
+        
+        
         quiz.append(Quiz(image: "MA", answers: ["Massachusetts", "Connecticut", "Vermont", "Rhode Island"], correctAnswer: "Massachusetts"))
         quiz.append(Quiz(image: "MI", answers: ["Michigan", "Minnesota", "Wisconsin", "Massachusetts"], correctAnswer: "Michigan"))
         quiz.append(Quiz(image: "MN", answers: ["Minnesota", "Michigan", "Wisconsin", "Illinois"], correctAnswer: "Minnesota"))
@@ -43,8 +58,11 @@ class QuizModel {
         quiz.append(Quiz(image: "MT", answers: ["Montana", "Oregon", "Idaho", "Washington"], correctAnswer: "Montana"))
         quiz.append(Quiz(image: "NE", answers: ["Nebraska", "South Dakota", "Kansas", "Colorado"], correctAnswer: "Nebraska"))
         quiz.append(Quiz(image: "NV", answers: ["Nevada", "Arizona", "Utah", "Oregon"], correctAnswer: "Nevada"))
+        
         quiz.append(Quiz(image: "NH", answers: ["New Hampshire", "Vermont", "Maine", "Massachusetts"], correctAnswer: "New Hampshire"))
         quiz.append(Quiz(image: "NJ", answers: ["New Jersey", "New York", "New Hampshire", "New Mexico"], correctAnswer: "New Jersey"))
+        
+        
         quiz.append(Quiz(image: "NM", answers: ["New Mexico", "Arizona", "Colorado", "Utah"], correctAnswer: "New Mexico"))
         quiz.append(Quiz(image: "NY", answers: ["New York", "New Jersey", "Delaware", "Pennsylvania"], correctAnswer: "New York"))
         quiz.append(Quiz(image: "NC", answers: ["North Carolina", "Virginia", "South Carolina", "Georgia"], correctAnswer: "North Carolina"))
@@ -53,16 +71,29 @@ class QuizModel {
         quiz.append(Quiz(image: "OK", answers: ["Oklahoma", "Kansas", "Arkansas", "Louisiana"], correctAnswer: "Oklahoma"))
         quiz.append(Quiz(image: "OR", answers: ["Oregon", "Idaho", "Nevada", "Utah"], correctAnswer: "Oregon"))
         quiz.append(Quiz(image: "PA", answers: ["Pennsylvania", "New York", "Maryland", "Ohio"], correctAnswer: "Pennsylvania"))
+        
+        
         quiz.append(Quiz(image: "RI", answers: ["Rhode Island", "Connecticut", "Massachusetts", "New York"], correctAnswer: "Rhode Island"))
+        
+        
         quiz.append(Quiz(image: "SC", answers: ["South Carolina", "North Carolina", "Virginia", "Tennessee"], correctAnswer: "South Carolina"))
         quiz.append(Quiz(image: "SD", answers: ["South Dakota", "Nebraska", "Wyoming", "Iowa"], correctAnswer: "South Dakota"))
         quiz.append(Quiz(image: "TN", answers: ["Tennessee", "Kentucky", "Virginia", "North Carolina"], correctAnswer: "Tennessee"))
         quiz.append(Quiz(image: "TX", answers: ["Texas", "Alaska", "Florida", "New Mexico"], correctAnswer: "Texas"))
         quiz.append(Quiz(image: "UT", answers: ["Utah", "Nevada", "Wyoming", "Iowa"], correctAnswer: "Utah"))
+        
+        
         quiz.append(Quiz(image: "VT", answers: ["Vermont", "New Hampshire", "New Jersey", "Maine"], correctAnswer: "Vermont"))
+        
+        
         quiz.append(Quiz(image: "VA", answers: ["Virginia", "Maryland", "Kentucky", "North Carolina"], correctAnswer: "Virginia"))
         quiz.append(Quiz(image: "WA", answers: ["Washington", "Oregon", "Montana", "Alaska"], correctAnswer: "Washington"))
+        
+        
         quiz.append(Quiz(image: "WV", answers: ["West Virginia", "Virginia", "Ohio", "Indiana"], correctAnswer: "West Virginia"))
+        
+        
+        
         quiz.append(Quiz(image: "WI", answers: ["Wisconsin", "Michigan", "Minnesota", "Illinois"], correctAnswer: "Wisconsin"))
         quiz.append(Quiz(image: "WY", answers: ["Wyoming", "Nebraska", "Colorado", "Utah"], correctAnswer: "Wyoming"))
         
