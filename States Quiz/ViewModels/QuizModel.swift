@@ -79,9 +79,8 @@ class QuizModel {
         
         
         quiz.append(Quiz(image: "VT", answers: ["Vermont", "New Hampshire", "New Jersey", "Maine"], correctAnswer: "Vermont"))
+        quiz.append(Quiz(image: "VA", answers: ["Virginia", "Maryland", "Kentucky", "North Carolina"], correctAnswer: "Virginia"))
         
-        
-        //!quiz.append(Quiz(image: "VA", answers: ["Virginia", "Maryland", "Kentucky", "North Carolina"], correctAnswer: "Virginia"))
         //!quiz.append(Quiz(image: "WA", answers: ["Washington", "Oregon", "Montana", "Alaska"], correctAnswer: "Washington"))
         
         
