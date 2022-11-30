@@ -212,14 +212,14 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         // if answer is wrong
         else {
-            //statues[mistakeCounter].alpha = 0
-            //mistakeCounter += 1
+            statues[mistakeCounter].alpha = 0
+            mistakeCounter += 1
             
-//            if mistakeCounter >= 4 {
-//
-//                let alert = model.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
-//                present(alert, animated: true)
-//            }
+            if mistakeCounter >= 4 {
+
+                let alert = model.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
+                present(alert, animated: true)
+            }
             selectedCell?.backgroundColor = .systemRed
         }
     }
