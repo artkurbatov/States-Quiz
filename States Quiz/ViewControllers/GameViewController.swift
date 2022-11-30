@@ -108,8 +108,9 @@ class GameViewController: UIViewController {
         
         answersCollection.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
-            make.trailing.bottom.equalToSuperview().offset(-20)
-            make.height.equalToSuperview().multipliedBy(0.35)
+            make.trailing.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-40)
+            make.height.equalToSuperview().multipliedBy(0.3)
         }
     }
     
