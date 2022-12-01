@@ -128,9 +128,9 @@ class GameViewController: UIViewController {
             UIView.animate(withDuration: 0.6, delay: 0) {
                 self.answersCollection.alpha = 1
                 self.navigationItem.title = "\(self.currentQuestionIndex+1) of \(self.model.quiz.count)"
+                self.updateMap()
             }
         }
-        updateMap()
     }
     
     func restartGame() {
