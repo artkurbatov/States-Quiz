@@ -9,6 +9,8 @@ import Foundation
 
 struct Result {
     
-    var id = UUID()
-    var gameTitle: String
+    let id = UUID()
+    let gameTitle: String
+    let score: String
+    let attemptsLeft: Int
 }
