@@ -6,11 +6,18 @@
 //
 
 import Foundation
+import CoreData
 
-struct Result {
-    
-    let id = UUID()
-    let gameTitle: String
-    let score: String
-    let attemptsLeft: Int
-}
+//class Result: NSManagedObject {
+//    
+//    let id = UUID()
+//    var gameTitle: String = ""
+//    var score: String = ""
+//    var attemptsLeft: Int = 0
+//    
+//    init(gameTitle: String, score: String, attempltsLeft: Int) {
+//        self.gameTitle = gameTitle
+//        self.score = score
+//        self.attemptsLeft = attempltsLeft
+//    }
+//}

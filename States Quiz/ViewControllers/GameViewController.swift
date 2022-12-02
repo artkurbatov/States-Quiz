@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 import SnapKit
 
 class GameViewController: UIViewController {
@@ -23,7 +24,9 @@ class GameViewController: UIViewController {
     private let statue3 = UIImageView()
     private let statue4 = UIImageView()
     
-    private let model = QuizModel()
+    private let quizModel = QuizModel()
+    //private let resultModel = ResultModel()
+    
     private var currentQuestionIndex = 0
     private var mistakeCounter = 0
     
@@ -41,7 +44,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
-        navigationItem.title = "\(currentQuestionIndex+1) of \(model.quiz.count)"
+        navigationItem.title = "\(currentQuestionIndex+1) of \(quizModel.quiz.count)"
         
         answersCollection.delegate = self
         answersCollection.dataSource = self
@@ -99,7 +102,7 @@ class GameViewController: UIViewController {
     }
     
     private func updateMap() {
-        mapView.image = UIImage(named: model.quiz[currentQuestionIndex].image)
+        mapView.image = UIImage(named: quizModel.quiz[currentQuestionIndex].image)
     }
     
     private func configureCollection() {
@@ -118,7 +121,7 @@ class GameViewController: UIViewController {
     
     private func displayNextQuestion() {
         currentQuestionIndex += 1
-        model.quiz[currentQuestionIndex].answers.shuffle()
+        quizModel.quiz[currentQuestionIndex].answers.shuffle()
         
         // disappear and appear animation
         UIView.animate(withDuration: 0.4, delay: 0.2) {
@@ -127,7 +130,7 @@ class GameViewController: UIViewController {
             self.answersCollection.reloadData()
             UIView.animate(withDuration: 0.6, delay: 0) {
                 self.answersCollection.alpha = 1
-                self.navigationItem.title = "\(self.currentQuestionIndex+1) of \(self.model.quiz.count)"
+                self.navigationItem.title = "\(self.currentQuestionIndex+1) of \(self.quizModel.quiz.count)"
                 self.updateMap()
             }
         }
@@ -135,13 +138,13 @@ class GameViewController: UIViewController {
     
     func restartGame() {
         currentQuestionIndex = 0
-        model.quiz.shuffle()
+        quizModel.quiz.shuffle()
         mistakeCounter = 0
         for statue in statues {
             statue.alpha = 1
         }
         enableCellsInteraction()
-        navigationItem.title = "\(currentQuestionIndex+1) of \(model.quiz.count)"
+        navigationItem.title = "\(currentQuestionIndex+1) of \(quizModel.quiz.count)"
         answersCollection.reloadData()
         updateMap()
     }
@@ -164,7 +167,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath) as? AnswerCollectionViewCell {
             cell.backgroundColor = .systemBackground
-            cell.configureCell(text: model.quiz[currentQuestionIndex].answers[indexPath.row])
+            cell.configureCell(text: quizModel.quiz[currentQuestionIndex].answers[indexPath.row])
             return cell
         }
         else {
@@ -195,11 +198,11 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         selectedCellPaths.insert(indexPath)
         
         // if answer is correct
-        if model.quiz[currentQuestionIndex].answers[indexPath.row] == model.quiz[currentQuestionIndex].correctAnswer {
+        if quizModel.quiz[currentQuestionIndex].answers[indexPath.row] == quizModel.quiz[currentQuestionIndex].correctAnswer {
             
             selectedCell?.backgroundColor = .systemGreen
             // if it wasn't the last question
-            if model.hasNext(currentIndex: currentQuestionIndex) {
+            if quizModel.hasNext(currentIndex: currentQuestionIndex) {
                 
                 displayNextQuestion()
                 enableCellsInteraction()
@@ -207,7 +210,8 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             // if it was the last question present result alert
             else {
                 
-                let alert = model.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
+                let alert = quizModel.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
+                //resultModel.addResult(gameTitle: "1", score: "\(currentQuestionIndex+1)/\(quizModel.quiz.count)", attemptsLeft: 4-mistakeCounter)
                 present(alert, animated: true)
             }
         }
@@ -218,7 +222,8 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
             if mistakeCounter >= 4 {
 
-                let alert = model.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
+                let alert = quizModel.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
+                //resultModel.addResult(gameTitle: "1", score: "\(currentQuestionIndex+1)/\(quizModel.quiz.count)", attemptsLeft: 0)
                 present(alert, animated: true)
             }
             selectedCell?.backgroundColor = .systemRed
