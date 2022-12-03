@@ -2,7 +2,7 @@
 //  Result+CoreDataClass.swift
 //  
 //
-//  Created by Kurbatov Artem on 02.12.2022.
+//  Created by Kurbatov Artem on 03.12.2022.
 //
 //
 

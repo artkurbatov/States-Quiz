@@ -24,7 +24,7 @@ class ResultModel {
             }
         }
         catch {
-#warning("add error handler")
+            #warning("error handler")
         }
     }
     
@@ -39,7 +39,7 @@ class ResultModel {
             try self.context.save()
         }
         catch {
-#warning("add error handler")
+#warning("error handler")
         }
     }
     
@@ -52,11 +52,18 @@ class ResultModel {
             try self.context.save()
         }
         catch {
-            
+#warning("error handler")
         }
-        
         fetchResults(tableView: resultsTableView)
     }
     
-    
+    private func errorAlert(errorMessage: String) -> UIAlertController {
+        
+        let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        
+        return alert
+    }
 }

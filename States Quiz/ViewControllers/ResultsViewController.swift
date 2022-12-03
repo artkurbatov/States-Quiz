@@ -10,24 +10,20 @@ import CoreData
 import SnapKit
 
 class ResultsViewController: UIViewController {
-
+    
     private let resultsTableView = UITableView()
     private let resultModel = ResultModel()
-    //private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-   // private var results = [Result]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         resultsTableView.delegate = self
         resultsTableView.dataSource = self
-        resultsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "resultCell")
+        resultsTableView.register(ResultTableViewCell.self, forCellReuseIdentifier: "resultCell")
         
         navigationItem.title = "Results"
         
         setUpResults()
-        //fetchResults()
         view.backgroundColor = .systemBackground
     }
     
@@ -48,38 +44,6 @@ class ResultsViewController: UIViewController {
         }
         
     }
-    
-    
-//    private func fetchResults() {
-//
-//        do {
-//            self.results = try context.fetch(Result.fetchRequest())
-//
-//            DispatchQueue.main.async {
-//                self.resultsTableView.reloadData()
-//            }
-//        }
-//        catch {
-//            #warning("add error handler")
-//        }
-//    }
-//
-//    private func addResult() {
-//
-//        let result = Result(context: self.context)
-//        result.gameTitle = "New Game"
-//        result.score = "2/50"
-//        result.attemptsLeft = 4
-//
-//        do {
-//            try self.context.save()
-//        }
-//        catch {
-//            #warning("add error handler")
-//        }
-//
-//        self.fetchResults()
-//    }
 }
 
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -89,9 +53,11 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = resultsTableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath)
-        cell.textLabel?.text = resultModel.results[indexPath.row].score
-        return cell
+        if  let cell = resultsTableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? ResultTableViewCell {
+            cell.setUpCell(resultToDisplay: resultModel.results[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -102,6 +68,5 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return UISwipeActionsConfiguration(actions: [action])
-        
     }
 }

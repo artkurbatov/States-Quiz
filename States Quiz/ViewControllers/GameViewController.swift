@@ -210,7 +210,6 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             // if it was the last question present result alert
             else {
-                
                 let alert = quizModel.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
                 resultModel.addResult(gameTitle: "1", score: "\(currentQuestionIndex+1)/\(quizModel.quiz.count)", attemptsLeft: 4-mistakeCounter)
                 present(alert, animated: true)
@@ -224,7 +223,6 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if mistakeCounter >= 4 {
 
                 let alert = quizModel.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
-                //resultModel.addResult(
                 resultModel.addResult(gameTitle: "1", score: "\(currentQuestionIndex)/\(quizModel.quiz.count)", attemptsLeft: 0)
                 present(alert, animated: true)
             }
