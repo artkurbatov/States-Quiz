@@ -11,7 +11,6 @@ import SnapKit
 class ResultTableViewCell: UITableViewCell {
     
     private let titleLabel = UILabel()
-    private let scoreLable = UILabel()
     private let attemptsStack = UIStackView()
 
     
@@ -26,32 +25,16 @@ class ResultTableViewCell: UITableViewCell {
     func setUpCell(resultToDisplay: Result) {
         
         addSubview(titleLabel)
-        addSubview(scoreLable)
-        //addSubview(attemptsStack)
         
-        titleLabel.text = resultToDisplay.gameTitle
+        titleLabel.text = "\(resultToDisplay.gameTitle ?? "") (\(resultToDisplay.score ?? ""))"
         titleLabel.textAlignment = .left
         titleLabel.textColor = resultToDisplay.attemptsLeft > 0 ? .systemGreen : .systemRed
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        //scoreLable.text = resultToDisplay?.score
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(20)
-            make.width.equalToSuperview().multipliedBy(0.4)
+            make.width.equalToSuperview().multipliedBy(0.5)
         }
-        
-        scoreLable.text = resultToDisplay.score
-        scoreLable.textAlignment = .left
-        scoreLable.font = UIFont.systemFont(ofSize: 10)
-        
-        scoreLable.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(titleLabel.snp.trailing).offset(10)
-            make.trailing.equalToSuperview().offset(-20)
-        }
-        
-        
-        
     }
 }

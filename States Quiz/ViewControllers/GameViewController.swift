@@ -26,7 +26,6 @@ class GameViewController: UIViewController {
     
     private let quizModel = QuizModel()
     private let resultModel = ResultModel()
-    //private let resultModel = ResultModel()
     
     private var currentQuestionIndex = 0
     private var mistakeCounter = 0
@@ -211,7 +210,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             // if it was the last question present result alert
             else {
                 let alert = quizModel.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
-                resultModel.addResult(gameTitle: "1", score: "\(currentQuestionIndex+1)/\(quizModel.quiz.count)", attemptsLeft: 4-mistakeCounter)
+                resultModel.addResult(gameTitle: "Guess state", score: "\(currentQuestionIndex+1)/\(quizModel.quiz.count)", attemptsLeft: 4-mistakeCounter)
                 present(alert, animated: true)
             }
         }
@@ -223,7 +222,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if mistakeCounter >= 4 {
 
                 let alert = quizModel.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
-                resultModel.addResult(gameTitle: "1", score: "\(currentQuestionIndex)/\(quizModel.quiz.count)", attemptsLeft: 0)
+                resultModel.addResult(gameTitle: "Guess state", score: "\(currentQuestionIndex)/\(quizModel.quiz.count)", attemptsLeft: 0)
                 present(alert, animated: true)
             }
             selectedCell?.backgroundColor = .systemRed
