@@ -12,8 +12,9 @@ import SnapKit
 class ResultsViewController: UIViewController {
     
     private let resultsTableView = UITableView()
+    private let clearButton = UIButton()
     private let resultModel = ResultModel()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,7 +26,6 @@ class ResultsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         setUpResults()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,12 +49,12 @@ class ResultsViewController: UIViewController {
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return resultModel.results.count
+        return ResultModel.results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if  let cell = resultsTableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? ResultTableViewCell {
-            cell.setUpCell(resultToDisplay: resultModel.results[indexPath.row])
+            cell.setUpCell(resultToDisplay: ResultModel.results[indexPath.row])
             return cell
         }
         return UITableViewCell()

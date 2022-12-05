@@ -12,12 +12,12 @@ import CoreData
 class ResultModel {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var results = [Result]()
+    static var results = [Result]()
     
     func fetchResults(tableView resultsTableView: UITableView) {
         
         do {
-            self.results = try context.fetch(Result.fetchRequest())
+            ResultModel.results = try context.fetch(Result.fetchRequest())
             
             DispatchQueue.main.async {
                 resultsTableView.reloadData()
@@ -28,12 +28,12 @@ class ResultModel {
         }
     }
     
-    func addResult(gameTitle: String, score: String, attemptsLeft: Int) {
+    func addResult(gameTitle: String, score: String, mistakeCounter: Int) {
         
         let result = Result(context: self.context)
         result.gameTitle = gameTitle
         result.score = score
-        result.attemptsLeft = Int64(attemptsLeft)
+        result.mistakeCounter = Int64(mistakeCounter)
         
         do {
             try self.context.save()
@@ -46,7 +46,7 @@ class ResultModel {
     
     func removeResult(resultId: Int, tableView resultsTableView: UITableView) {
         
-        self.context.delete(results[resultId])
+        self.context.delete(ResultModel.results[resultId])
         
         do {
             try self.context.save()
