@@ -12,7 +12,6 @@ import SnapKit
 class ResultsViewController: UIViewController {
     
     private let resultsTableView = UITableView()
-    private let clearButton = UIButton()
     private let resultModel = ResultModel()
     
     override func viewDidLoad() {
@@ -23,9 +22,10 @@ class ResultsViewController: UIViewController {
         resultsTableView.register(ResultTableViewCell.self, forCellReuseIdentifier: "resultCell")
         
         navigationItem.title = "Results"
+        view.backgroundColor = .systemBackground
         
         setUpResults()
-        view.backgroundColor = .systemBackground
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,29 +36,13 @@ class ResultsViewController: UIViewController {
     private func setUpResults() {
         
         view.addSubview(resultsTableView)
-        view.addSubview(clearButton)
-        
-        clearButton.configuration = .filled()
-        clearButton.tintColor = .systemRed
-        clearButton.configuration?.cornerStyle = .capsule
-        clearButton.configuration?.title = "Clear"
-        
-        clearButton.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.3)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(45)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-15)
-        }
         
         resultsTableView.allowsSelection = false
         
         resultsTableView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(20)
-            make.bottom.equalTo(clearButton.snp.top).offset(-15)
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
-        
-       
     }
 }
 

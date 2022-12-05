@@ -50,7 +50,7 @@ class GameViewController: UIViewController {
         answersCollection.dataSource = self
         
         // configure views
-        setUpHearts()
+        setUpStatues()
         configureMap()
         configureCollection()
     }
@@ -62,7 +62,7 @@ class GameViewController: UIViewController {
     
     // MARK: - Configure views and set constraints
     
-    private func setUpHearts() {
+    private func setUpStatues() {
         
         view.addSubview(statuesStack)
         statuesStack.axis = .horizontal
