@@ -25,6 +25,7 @@ class ResultsViewController: UIViewController {
         navigationItem.title = "Results"
         view.backgroundColor = .systemBackground
         
+        setUpClearButton()
         setUpResults()
     }
     
@@ -40,9 +41,29 @@ class ResultsViewController: UIViewController {
         resultsTableView.allowsSelection = false
         
         resultsTableView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(clearButton.snp.top).offset(-20)
         }
+    }
+    
+    private func setUpClearButton() {
+        
+        view.addSubview(clearButton)
+        
+        clearButton.configuration = .filled()
+        clearButton.configuration?.cornerStyle = .capsule
+        clearButton.configuration?.title = "Clear"
+        clearButton.configuration?.baseForegroundColor = .white
+        clearButton.configuration?.baseBackgroundColor = .systemRed
+        
+        clearButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.3)
+            make.height.equalTo(40)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
+        
     }
 }
 
