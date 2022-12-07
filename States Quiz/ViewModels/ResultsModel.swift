@@ -57,6 +57,20 @@ class ResultModel {
         fetchResults(tableView: resultsTableView)
     }
     
+    func clearResults(tableView resultsTableView: UITableView) {
+        
+        for result in ResultModel.results {
+            self.context.delete(result)
+        }
+        do {
+            try self.context.save()
+        }
+        catch {
+#warning("error handler")
+        }
+        fetchResults(tableView: resultsTableView)
+    }
+    
     private func errorAlert(errorMessage: String) -> UIAlertController {
         
         let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)

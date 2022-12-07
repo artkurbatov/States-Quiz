@@ -24,7 +24,7 @@ class ResultsViewController: UIViewController {
         
         navigationItem.title = "Results"
         view.backgroundColor = .systemBackground
-        
+                
         setUpClearButton()
         setUpResults()
     }
@@ -43,13 +43,14 @@ class ResultsViewController: UIViewController {
         resultsTableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(clearButton.snp.top).offset(-20)
+            make.bottom.equalTo(clearButton.snp.top).offset(-10)
         }
     }
     
     private func setUpClearButton() {
         
         view.addSubview(clearButton)
+        clearButton.addTarget(self, action: #selector(clearButtonAction), for: .touchUpInside)
         
         clearButton.configuration = .filled()
         clearButton.configuration?.cornerStyle = .capsule
@@ -61,11 +62,16 @@ class ResultsViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.3)
             make.height.equalTo(40)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
         }
-        
+    }
+    
+    @objc private func clearButtonAction() {
+        resultModel.clearResults(tableView: resultsTableView)
     }
 }
+
+
 
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     
