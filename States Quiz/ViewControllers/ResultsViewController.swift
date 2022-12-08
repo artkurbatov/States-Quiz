@@ -13,6 +13,8 @@ class ResultsViewController: UIViewController {
     
     private let resultsTableView = UITableView()
     private let clearButton = UIButton()
+    private let resultsLable = UILabel()
+    private let messageLable = UILabel()
     private let resultModel = ResultModel()
         
     override func viewDidLoad() {
@@ -22,15 +24,19 @@ class ResultsViewController: UIViewController {
         resultsTableView.dataSource = self
         resultsTableView.register(ResultTableViewCell.self, forCellReuseIdentifier: "resultCell")
         
-        navigationItem.title = "Results"
+        //navigationItem.title = "Results"
         view.backgroundColor = .systemBackground
-                
+        
         setUpClearButton()
         setUpResults()
+        //setUpClearButton()
+        setUpMessageLabel()
+        setUpResultsLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         resultModel.fetchResults(tableView: resultsTableView)
+        messageLable.alpha = ResultModel.results.count > 0 ? 0 : 1
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -43,34 +49,75 @@ class ResultsViewController: UIViewController {
         resultsTableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(clearButton.snp.top).offset(-10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            //make.bottom.equalTo(clearButton.snp.top).offset(-10)
         }
     }
     
     private func setUpClearButton() {
         
-        view.addSubview(clearButton)
-        clearButton.addTarget(self, action: #selector(clearButtonAction), for: .touchUpInside)
-        
-        clearButton.configuration = .filled()
-        clearButton.configuration?.cornerStyle = .capsule
-        clearButton.configuration?.title = "Clear"
-        clearButton.configuration?.baseForegroundColor = .white
-        clearButton.configuration?.baseBackgroundColor = .systemRed
-        
-        clearButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.3)
-            make.height.equalTo(40)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
-        }
+        let clear = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clearAction))
+        navigationItem.rightBarButtonItem = clear
     }
     
-    @objc private func clearButtonAction() {
+    @objc private func clearAction() {
         resultModel.clearResults(tableView: resultsTableView)
+        messageLable.alpha = 1
+    }
+    
+    private func setUpResultsLabel() {
+        
+        view.addSubview(resultsLable)
+        
+        resultsLable.text = "Results"
+        resultsLable.textColor = .black // fix color
+        resultsLable.font = UIFont.boldSystemFont(ofSize: 35)
+        
+        resultsLable.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.width.equalToSuperview().multipliedBy(0.5)
+            make.top.equalToSuperview().offset(100)
+        }
+        
+    }
+    
+//    private func setUpClearButton() {
+//
+//        view.addSubview(clearButton)
+//        clearButton.addTarget(self, action: #selector(clearButtonAction), for: .touchUpInside)
+//
+//        clearButton.configuration = .filled()
+//        clearButton.configuration?.cornerStyle = .capsule
+//        clearButton.configuration?.title = "Clear"
+//        clearButton.configuration?.baseForegroundColor = .white
+//        clearButton.configuration?.baseBackgroundColor = .systemRed
+//
+//        clearButton.snp.makeConstraints { make in
+//            make.centerX.equalToSuperview()
+//            make.width.equalToSuperview().multipliedBy(0.3)
+//            make.height.equalTo(40)
+//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+//        }
+//    }
+//
+//    @objc private func clearButtonAction() {
+//        resultModel.clearResults(tableView: resultsTableView)
+//        messageLable.alpha = 1
+//    }
+    
+    private func setUpMessageLabel() {
+        
+        view.addSubview(messageLable)
+        
+        messageLable.text = "Here you will see the results of your games"
+        messageLable.numberOfLines = 0
+        messageLable.textColor = .lightGray
+        
+        messageLable.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
     }
 }
-
 
 
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
