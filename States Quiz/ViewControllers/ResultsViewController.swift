@@ -61,8 +61,23 @@ class ResultsViewController: UIViewController {
     }
     
     @objc private func clearAction() {
-        resultModel.clearResults(tableView: resultsTableView)
-        messageLable.alpha = 1
+        
+        if !ResultModel.results.isEmpty {
+            
+            let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete all your results?", preferredStyle: .alert)
+            
+            let delete = UIAlertAction(title: "Delete", style: .destructive) { _ in
+                self.resultModel.clearResults(tableView: self.resultsTableView)
+                self.messageLable.alpha = 1
+            }
+            
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+            
+            alert.addAction(delete)
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
+        }
     }
     
     private func setUpResultsLabel() {
