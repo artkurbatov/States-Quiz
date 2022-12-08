@@ -12,8 +12,7 @@ import SnapKit
 class ResultsViewController: UIViewController {
     
     private let resultsTableView = UITableView()
-    private let clearButton = UIButton()
-    private let resultsLable = UILabel()
+   // private let resultsLable = UILabel()
     private let messageLable = UILabel()
     private let resultModel = ResultModel()
         
@@ -24,14 +23,14 @@ class ResultsViewController: UIViewController {
         resultsTableView.dataSource = self
         resultsTableView.register(ResultTableViewCell.self, forCellReuseIdentifier: "resultCell")
         
-        //navigationItem.title = "Results"
+        navigationItem.title = "Results"
         view.backgroundColor = .systemBackground
         
         setUpClearButton()
         setUpResults()
         //setUpClearButton()
         setUpMessageLabel()
-        setUpResultsLabel()
+        //setUpResultsLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +49,6 @@ class ResultsViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            //make.bottom.equalTo(clearButton.snp.top).offset(-10)
         }
     }
     
@@ -80,46 +78,21 @@ class ResultsViewController: UIViewController {
         }
     }
     
-    private func setUpResultsLabel() {
-        
-        view.addSubview(resultsLable)
-        
-        resultsLable.text = "Results"
-        resultsLable.textColor = .black // fix color
-        resultsLable.font = UIFont.boldSystemFont(ofSize: 35)
-        
-        resultsLable.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.width.equalToSuperview().multipliedBy(0.5)
-            make.top.equalToSuperview().offset(100)
-        }
-        
-    }
-    
-//    private func setUpClearButton() {
+//    private func setUpResultsLabel() {
 //
-//        view.addSubview(clearButton)
-//        clearButton.addTarget(self, action: #selector(clearButtonAction), for: .touchUpInside)
+//        view.addSubview(resultsLable)
 //
-//        clearButton.configuration = .filled()
-//        clearButton.configuration?.cornerStyle = .capsule
-//        clearButton.configuration?.title = "Clear"
-//        clearButton.configuration?.baseForegroundColor = .white
-//        clearButton.configuration?.baseBackgroundColor = .systemRed
+//        resultsLable.text = "Results"
+//        resultsLable.textColor = .black // fix color
+//        resultsLable.font = UIFont.boldSystemFont(ofSize: 35)
 //
-//        clearButton.snp.makeConstraints { make in
-//            make.centerX.equalToSuperview()
-//            make.width.equalToSuperview().multipliedBy(0.3)
-//            make.height.equalTo(40)
-//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-10)
+//        resultsLable.snp.makeConstraints { make in
+//            make.leading.equalToSuperview().offset(15)
+//            make.width.equalToSuperview().multipliedBy(0.5)
+//            make.top.equalToSuperview().offset(100)
 //        }
-//    }
 //
-//    @objc private func clearButtonAction() {
-//        resultModel.clearResults(tableView: resultsTableView)
-//        messageLable.alpha = 1
 //    }
-    
     private func setUpMessageLabel() {
         
         view.addSubview(messageLable)
