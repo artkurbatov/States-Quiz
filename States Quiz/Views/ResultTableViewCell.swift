@@ -63,18 +63,17 @@ class ResultTableViewCell: UITableViewCell {
             if i < mistakeCounter {
                 statues[i].alpha = 0.3
             }
-            
+        
             statues[i].snp.makeConstraints { make in
                 make.width.equalTo(30)
-                make.height.equalTo(35)
+                make.height.equalTo(statuesStack)
             }
         }
         statuesStack.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-10)
-            make.width.equalToSuperview().multipliedBy(0.35)
+            make.trailing.equalToSuperview().offset(-5)
+            make.width.equalToSuperview().multipliedBy(0.33)
             make.centerY.equalToSuperview()
-            make.height.equalToSuperview().offset(-10)
+            make.height.equalTo(30)
         }
-        
     }
 }

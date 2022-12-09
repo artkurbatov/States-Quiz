@@ -12,7 +12,7 @@ import SnapKit
 class ResultsViewController: UIViewController {
     
     private let resultsTableView = UITableView()
-   // private let resultsLable = UILabel()
+     private let resultsLable = UILabel()
     private let messageLable = UILabel()
     private let resultModel = ResultModel()
         
@@ -28,7 +28,6 @@ class ResultsViewController: UIViewController {
         
         setUpClearButton()
         setUpResults()
-        //setUpClearButton()
         setUpMessageLabel()
         //setUpResultsLabel()
     }
@@ -36,7 +35,7 @@ class ResultsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         resultModel.fetchResults(tableView: resultsTableView)
         messageLable.alpha = ResultModel.results.count > 0 ? 0 : 1
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setUpResults() {
@@ -78,21 +77,21 @@ class ResultsViewController: UIViewController {
         }
     }
     
-//    private func setUpResultsLabel() {
-//
-//        view.addSubview(resultsLable)
-//
-//        resultsLable.text = "Results"
-//        resultsLable.textColor = .black // fix color
-//        resultsLable.font = UIFont.boldSystemFont(ofSize: 35)
-//
-//        resultsLable.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(15)
-//            make.width.equalToSuperview().multipliedBy(0.5)
-//            make.top.equalToSuperview().offset(100)
-//        }
-//
-//    }
+    private func setUpResultsLabel() {
+
+        view.addSubview(resultsLable)
+
+        resultsLable.text = "Results"
+        resultsLable.textColor = .black // fix color
+        resultsLable.font = UIFont.boldSystemFont(ofSize: 35)
+
+        resultsLable.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.width.equalToSuperview().multipliedBy(0.5)
+            make.top.equalToSuperview().offset(100)
+        }
+
+    }
     private func setUpMessageLabel() {
         
         view.addSubview(messageLable)

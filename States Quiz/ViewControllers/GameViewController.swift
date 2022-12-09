@@ -81,7 +81,7 @@ class GameViewController: UIViewController {
         
         statuesStack.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.trailing.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-10)
             make.width.equalToSuperview().multipliedBy(0.35)
             make.height.equalTo(30)
         }
@@ -179,7 +179,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = collectionView.frame.width * 0.45
-        let height = collectionView.frame.height * 0.25
+        let height = collectionView.frame.height * 0.35
         
         return CGSize(width: width, height: height)
     }
@@ -210,7 +210,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             // if it was the last question present result alert
             else {
                 let alert = quizModel.createResultAlert(title: "Congratulations!", numberOfCorrectAnswers: currentQuestionIndex+1, sender: self)
-                resultModel.addResult(gameTitle: "Guess state", score: "\(currentQuestionIndex+1)/\(quizModel.quiz.count)", mistakeCounter: mistakeCounter)
+                resultModel.addResult(gameTitle: "Guess states", score: "\(currentQuestionIndex+1)/\(quizModel.quiz.count)", mistakeCounter: mistakeCounter)
                 present(alert, animated: true)
             }
         }
@@ -222,7 +222,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
             if mistakeCounter >= 4 {
 
                 let alert = quizModel.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
-                resultModel.addResult(gameTitle: "Guess state", score: "\(currentQuestionIndex)/\(quizModel.quiz.count)", mistakeCounter: mistakeCounter)
+                resultModel.addResult(gameTitle: "Guess states", score: "\(currentQuestionIndex)/\(quizModel.quiz.count)", mistakeCounter: mistakeCounter)
                 present(alert, animated: true)
             }
             selectedCell?.backgroundColor = .systemRed
