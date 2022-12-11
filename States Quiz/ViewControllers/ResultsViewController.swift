@@ -12,7 +12,7 @@ import SnapKit
 class ResultsViewController: UIViewController {
     
     private let resultsTableView = UITableView()
-     private let resultsLable = UILabel()
+    private let resultsLable = UILabel()
     private let messageLable = UILabel()
     private let resultModel = ResultModel()
         
@@ -45,9 +45,13 @@ class ResultsViewController: UIViewController {
         resultsTableView.allowsSelection = false
         
         resultsTableView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+//            make.leading.equalToSuperview().offset(UIDevice.current.userInterfaceIdiom == .pad ? :)
+//            make.trailing.equalToSuperview()
+            make.centerX.centerY.equalToSuperview()
+            make.height.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(UIDevice.current.userInterfaceIdiom == .pad ? 0.7 : 1)
+            //make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            //make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
     

@@ -11,10 +11,6 @@ import SnapKit
 
 class GameViewController: UIViewController {
     
-    #warning("Add activity view controller after the game ends to share user's result")
-    #warning("Dark/light modes color conflict")
-    #warning("Add image animations")
-    
     private let mapView = UIImageView()
     
     private let statuesStack = UIStackView()
@@ -75,15 +71,15 @@ class GameViewController: UIViewController {
             statue.image = UIImage(named: "statue")
             
             statue.snp.makeConstraints { make in
-                make.width.height.equalTo(30)
+                make.width.height.equalTo(UIDevice.current.userInterfaceIdiom == .pad ? 40 : 30)
             }
         }
         
         statuesStack.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.trailing.equalToSuperview().offset(-10)
-            make.width.equalToSuperview().multipliedBy(0.35)
-            make.height.equalTo(30)
+            make.width.equalToSuperview().multipliedBy(UIDevice.current.userInterfaceIdiom == .pad ? 0.25 : 0.35)
+            make.height.equalTo(UIDevice.current.userInterfaceIdiom == .pad ? 40 : 30)
         }
     }
     
@@ -112,7 +108,7 @@ class GameViewController: UIViewController {
         answersCollection.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(mapView.snp.bottom).offset(40)
+            make.top.equalTo(mapView.snp.bottom).offset(UIDevice.current.userInterfaceIdiom == .pad ? 100 : 40)
             make.height.equalToSuperview().multipliedBy(0.3)
         }
     }
