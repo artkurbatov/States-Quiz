@@ -91,9 +91,11 @@ class QuizModel {
         
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
             let shareController = self.createActivityController(score: numCorrect)
-            //shareController.popoverPresentationController?.sourceItem =
+            //shareController.popoverPresentationController?.sourceView = MenuViewController().
             sender.present(shareController, animated: true)
+            //if UIDevice.current.userInterfaceIdiom != .pad {
             sender.navigationController?.popToRootViewController(animated: true)
+            //}
         }
         
         let playAgain = UIAlertAction(title: "Play again", style: .default) { _ in

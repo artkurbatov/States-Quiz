@@ -12,8 +12,9 @@ class MenuViewController: UIViewController {
     
     #warning("Add table view to display different game modes")
     
-    private var playButton = UIButton()
     private var gameModeTableView = UITableView()
+    
+    private var appState = ApplicationState()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,48 +22,44 @@ class MenuViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.backButtonTitle = ""
         navigationItem.title = "Let's play"
+        gameModeTableView.register(UITableViewCell.self, forCellReuseIdentifier: "gameModeCell")
         
-        //gameModeTableView.delegate = self
-        //gameModeTableView.dataSource = self
+        gameModeTableView.delegate = self
+        gameModeTableView.dataSource = self
         
-        setUpButton()
+        setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-            
-    private func setUpButton() {
-        
-        view.addSubview(playButton)
-        
-        playButton.setImage(UIImage(systemName: "play.circle"), for: .normal)
-        playButton.imageView?.tintColor = .systemGreen
-
-        playButton.snp.makeConstraints { make in
-            make.centerX.centerY.equalToSuperview()
-        }
-        
-        playButton.imageView?.snp.makeConstraints({ make in
-            make.height.width.equalTo(100)
-        })
-        
-        playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-    }
     
-    @objc private func playButtonTapped() {
-        navigationController?.pushViewController(GameViewController(), animated: true)
+    private func setupTableView() {
+        
+        view.addSubview(gameModeTableView)
+        gameModeTableView.showsVerticalScrollIndicator = false
+        
+        gameModeTableView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
     }
 }
 
-//extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//    
-//    
-//}
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return appState.gameMods.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = gameModeTableView.dequeueReusableCell(withIdentifier: "gameModeCell", for: indexPath)
+        cell.textLabel?.text = appState.gameMods[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let vc = GameViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+}

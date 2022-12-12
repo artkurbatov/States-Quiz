@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B809A7CF29157919001CEEB7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B809A7CE29157919001CEEB7 /* MenuViewController.swift */; };
 		B809A7D129157945001CEEB7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B809A7D029157945001CEEB7 /* SettingsViewController.swift */; };
+		B81CBD1929479B6C006B067F /* ApplicationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81CBD1829479B6C006B067F /* ApplicationState.swift */; };
 		B84CC04B292FA1B800A6FD6C /* ResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84CC04A292FA1B800A6FD6C /* ResultsModel.swift */; };
 		B858C38E291D1EA900DC1559 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858C38D291D1EA900DC1559 /* Quiz.swift */; };
 		B858C390291D2D3100DC1559 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B858C38F291D2D3100DC1559 /* GameViewController.swift */; };
@@ -33,6 +34,7 @@
 		B3030AFFA47300575DC9DEDA /* Pods-States Quiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-States Quiz.release.xcconfig"; path = "Target Support Files/Pods-States Quiz/Pods-States Quiz.release.xcconfig"; sourceTree = "<group>"; };
 		B809A7CE29157919001CEEB7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		B809A7D029157945001CEEB7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B81CBD1829479B6C006B067F /* ApplicationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationState.swift; sourceTree = "<group>"; };
 		B84CC04A292FA1B800A6FD6C /* ResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsModel.swift; sourceTree = "<group>"; };
 		B858C38D291D1EA900DC1559 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		B858C38F291D2D3100DC1559 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				B8F6F357293BD6D8008A322A /* Result+CoreDataClass.swift */,
+				B81CBD1829479B6C006B067F /* ApplicationState.swift */,
 				B858C395291D2EED00DC1559 /* QuizModel.swift */,
 				B84CC04A292FA1B800A6FD6C /* ResultsModel.swift */,
 			);
@@ -284,6 +287,7 @@
 				B88AB0002924F8BE0039DCF9 /* AlertViewController.swift in Sources */,
 				B858C396291D2EED00DC1559 /* QuizModel.swift in Sources */,
 				B858C38E291D1EA900DC1559 /* Quiz.swift in Sources */,
+				B81CBD1929479B6C006B067F /* ApplicationState.swift in Sources */,
 				B809A7D129157945001CEEB7 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

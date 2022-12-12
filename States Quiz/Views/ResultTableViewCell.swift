@@ -27,7 +27,7 @@ class ResultTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpCell(resultToDisplay: Result) {
+    func setupCell(resultToDisplay: Result) {
         
         statues = [statue1, statue2, statue3, statue4]
         

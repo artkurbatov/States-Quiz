@@ -45,15 +45,15 @@ class AlertViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-        setUpAlert()
-        setUpResultLabel()
-        setUpMessageLabel()
-        setUpStackView()
-        setUpShareButton()
+        setupAlert()
+        setupResultLabel()
+        setupMessageLabel()
+        setupStackView()
+        setupShareButton()
         setButtonConstraints()
     }
     
-    private func setUpAlert() {
+    private func setupAlert() {
         
         view.addSubview(alertView)
         alertView.backgroundColor = .systemBackground
@@ -69,7 +69,7 @@ class AlertViewController: UIViewController {
         }
     }
     
-    private func setUpResultLabel() {
+    private func setupResultLabel() {
         
         alertView.addSubview(resultLabel)
         resultLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -81,7 +81,7 @@ class AlertViewController: UIViewController {
         }
     }
     
-    private func setUpMessageLabel() {
+    private func setupMessageLabel() {
         
         alertView.addSubview(messageLabel)
         messageLabel.text = "You got \(numCorrect) out of \(model.quiz.count) questions correctly"
@@ -97,7 +97,7 @@ class AlertViewController: UIViewController {
     
     // MARK: - Buttons Configuration
     
-    private func setUpStackView() {
+    private func setupStackView() {
         
         alertView.addSubview(stackView)
         stackView.addArrangedSubview(menuButton)
@@ -128,7 +128,7 @@ class AlertViewController: UIViewController {
         }
     }
 
-    private func setUpShareButton() {
+    private func setupShareButton() {
         
         alertView.addSubview(shareButton)
         shareButton.addTarget(self, action: #selector(shareButtonAction), for: .touchUpInside)

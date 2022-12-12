@@ -26,9 +26,9 @@ class ResultsViewController: UIViewController {
         navigationItem.title = "Results"
         view.backgroundColor = .systemBackground
         
-        setUpClearButton()
-        setUpResults()
-        setUpMessageLabel()
+        setupClearButton()
+        setupResults()
+        setupMessageLabel()
         //setUpResultsLabel()
     }
     
@@ -38,24 +38,20 @@ class ResultsViewController: UIViewController {
         //navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    private func setUpResults() {
+    private func setupResults() {
         
         view.addSubview(resultsTableView)
         
         resultsTableView.allowsSelection = false
         
         resultsTableView.snp.makeConstraints { make in
-//            make.leading.equalToSuperview().offset(UIDevice.current.userInterfaceIdiom == .pad ? :)
-//            make.trailing.equalToSuperview()
             make.centerX.centerY.equalToSuperview()
             make.height.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(UIDevice.current.userInterfaceIdiom == .pad ? 0.7 : 1)
-            //make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            //make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
-    private func setUpClearButton() {
+    private func setupClearButton() {
         
         let clear = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clearAction))
         navigationItem.rightBarButtonItem = clear
@@ -81,7 +77,7 @@ class ResultsViewController: UIViewController {
         }
     }
     
-    private func setUpResultsLabel() {
+    private func setupResultsLabel() {
 
         view.addSubview(resultsLable)
 
@@ -96,7 +92,7 @@ class ResultsViewController: UIViewController {
         }
 
     }
-    private func setUpMessageLabel() {
+    private func setupMessageLabel() {
         
         view.addSubview(messageLable)
         
@@ -119,7 +115,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if  let cell = resultsTableView.dequeueReusableCell(withIdentifier: "resultCell", for: indexPath) as? ResultTableViewCell {
-            cell.setUpCell(resultToDisplay: ResultModel.results[indexPath.row])
+            cell.setupCell(resultToDisplay: ResultModel.results[indexPath.row])
             return cell
         }
         return UITableViewCell()
