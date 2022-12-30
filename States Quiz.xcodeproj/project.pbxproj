@@ -17,6 +17,7 @@
 		B8613166292E8073007C4953 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8613165292E8073007C4953 /* ResultsViewController.swift */; };
 		B88AB0002924F8BE0039DCF9 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88AAFFF2924F8BE0039DCF9 /* AlertViewController.swift */; };
 		B8A23BE4291EDF9A009B2E6F /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A23BE3291EDF9A009B2E6F /* AnswerCollectionViewCell.swift */; };
+		B8C45E53295F5F65003745A6 /* GameModeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C45E52295F5F65003745A6 /* GameModeTableViewCell.swift */; };
 		B8E2B18B2915754D001BFEF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2B18A2915754D001BFEF0 /* AppDelegate.swift */; };
 		B8E2B18D2915754D001BFEF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2B18C2915754D001BFEF0 /* SceneDelegate.swift */; };
 		B8E2B18F2915754D001BFEF0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2B18E2915754D001BFEF0 /* TabBarController.swift */; };
@@ -42,6 +43,7 @@
 		B8613165292E8073007C4953 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		B88AAFFF2924F8BE0039DCF9 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		B8A23BE3291EDF9A009B2E6F /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
+		B8C45E52295F5F65003745A6 /* GameModeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeTableViewCell.swift; sourceTree = "<group>"; };
 		B8E2B1872915754D001BFEF0 /* States Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "States Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E2B18A2915754D001BFEF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8E2B18C2915754D001BFEF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		B858C391291D2E8B00DC1559 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B8C45E52295F5F65003745A6 /* GameModeTableViewCell.swift */,
 				B8A23BE3291EDF9A009B2E6F /* AnswerCollectionViewCell.swift */,
 				B8F6F355293BD372008A322A /* ResultTableViewCell.swift */,
 			);
@@ -275,6 +278,7 @@
 			files = (
 				B8A23BE4291EDF9A009B2E6F /* AnswerCollectionViewCell.swift in Sources */,
 				B8613166292E8073007C4953 /* ResultsViewController.swift in Sources */,
+				B8C45E53295F5F65003745A6 /* GameModeTableViewCell.swift in Sources */,
 				B8E2B1952915754D001BFEF0 /* States_Quiz.xcdatamodeld in Sources */,
 				B809A7CF29157919001CEEB7 /* MenuViewController.swift in Sources */,
 				B8E2B18F2915754D001BFEF0 /* TabBarController.swift in Sources */,

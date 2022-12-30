@@ -9,6 +9,6 @@ import Foundation
 
 class ApplicationState {
     
-    var gameMods = ["States Quiz"]
+    var gameMods = ["States Quiz", "AAAAA"]
     
 }
