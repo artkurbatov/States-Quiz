@@ -9,28 +9,36 @@ import UIKit
 
 class GameModeTableViewCell: UITableViewCell {
     
-    private let bgView = UIView()
     private let clearBgView = UIView()
+    private let bgImageView = UIImageView()
     private let label = UILabel()
     
-    
-    
-    func configureCell() {
+    func configureCell(text: String) {
         
         backgroundView = clearBgView
         clearBgView.backgroundColor = .clear
+                
+        clearBgView.addSubview(bgImageView)
+        clearBgView.addSubview(label)
         
-        clearBgView.addSubview(bgView)
+        bgImageView.image = UIImage(named: "flag")
+        bgImageView.layer.cornerRadius = 10
+        bgImageView.clipsToBounds = true
+        bgImageView.alpha = 0.7
         
-        bgView.backgroundColor = .systemBlue
-        bgView.layer.cornerRadius = 20
-        
-        bgView.snp.makeConstraints { make in
+        label.text = text
+        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        //label.textColor = .white
+        //label.backgroundColor = .blue
+    
+        bgImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(10)
             make.bottom.equalToSuperview().offset(-10)
         }
         
-        
+        label.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
     }
 }
