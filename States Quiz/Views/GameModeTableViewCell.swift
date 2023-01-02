@@ -24,12 +24,14 @@ class GameModeTableViewCell: UITableViewCell {
         bgImageView.image = UIImage(named: "flag")
         bgImageView.layer.cornerRadius = 10
         bgImageView.clipsToBounds = true
-        bgImageView.alpha = 0.7
+        bgImageView.alpha = 0.5
         
         label.text = text
         label.font = UIFont.preferredFont(forTextStyle: .title2)
-        //label.textColor = .white
-        //label.backgroundColor = .blue
+        label.textColor = .black
+        label.backgroundColor = .white
+        //label.layer.cornerRadius = 5
+       // label.clipsToBounds = true
     
         bgImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()

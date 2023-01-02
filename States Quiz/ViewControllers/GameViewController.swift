@@ -20,6 +20,8 @@ class GameViewController: UIViewController {
     private let statue3 = UIImageView()
     private let statue4 = UIImageView()
     
+    private let ticket = UIImageView()
+    
     private let quizModel = QuizModel()
     private let resultModel = ResultModel()
     
@@ -46,6 +48,7 @@ class GameViewController: UIViewController {
         answersCollection.dataSource = self
         
         // configure views
+        configureTickets()
         setupStatues()
         configureMap()
         configureCollection()
@@ -56,7 +59,21 @@ class GameViewController: UIViewController {
     }
     
     
-    // MARK: - Configure views and set constraints
+    // MARK: - Configure statues and tickets
+    
+    private func configureTickets() {
+        
+        view.addSubview(ticket)
+        
+        ticket.image = UIImage(named: "ticket")
+        
+        ticket.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.equalToSuperview().offset(10)
+            make.width.height.equalTo(UIDevice.current.userInterfaceIdiom == .pad ? 40 : 25)
+        }
+    }
+    
     
     private func setupStatues() {
         
@@ -83,6 +100,8 @@ class GameViewController: UIViewController {
         }
     }
     
+    // MARK: - Map configuration
+    
     private func configureMap() {
         
         view.addSubview(mapView)
@@ -100,6 +119,8 @@ class GameViewController: UIViewController {
     private func updateMap() {
         mapView.image = UIImage(named: quizModel.quiz[currentQuestionIndex].image)
     }
+    
+    // MARK: - Answers
     
     private func configureCollection() {
         
@@ -160,6 +181,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return 4
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath) as? AnswerCollectionViewCell {
             cell.backgroundColor = .systemBackground
@@ -179,6 +201,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return CGSize(width: width, height: height)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20.0

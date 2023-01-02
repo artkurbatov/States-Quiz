@@ -53,6 +53,7 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         return appState.gameMods.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = gameModeTableView.dequeueReusableCell(withIdentifier: "gameModeCell", for: indexPath) as? GameModeTableViewCell {
             cell.configureCell(text: appState.gameMods[indexPath.row])
@@ -64,10 +65,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.view.frame.height * 0.15
     }
-    
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
