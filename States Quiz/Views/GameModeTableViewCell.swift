@@ -27,11 +27,11 @@ class GameModeTableViewCell: UITableViewCell {
         bgImageView.alpha = 0.5
         
         label.text = text
-        label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textColor = .black
         label.backgroundColor = .white
-        //label.layer.cornerRadius = 5
-       // label.clipsToBounds = true
+        label.layer.cornerRadius = 7
+        label.clipsToBounds = true
     
         bgImageView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
