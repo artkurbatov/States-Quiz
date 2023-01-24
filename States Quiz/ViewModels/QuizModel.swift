@@ -85,10 +85,6 @@ class QuizModel {
         
         let alert = UIAlertController(title: title, message: "You got \(numCorrect) out of \(quiz.count) questions", preferredStyle: .alert)
         
-        let backAction = UIAlertAction(title: "Back to menu", style: .default) { _ in
-            sender.navigationController?.popToRootViewController(animated: true)
-        }
-        
         let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
             let shareController = self.createActivityController(score: numCorrect)
             //shareController.popoverPresentationController?.sourceView = MenuViewController().
@@ -102,9 +98,8 @@ class QuizModel {
             sender.restartGame()
         }
         
+        //alert.addAction(shareAction)
         alert.addAction(playAgain)
-        alert.addAction(shareAction)
-        alert.addAction(backAction)
         
         return alert
     }

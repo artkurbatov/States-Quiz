@@ -19,9 +19,7 @@ class GameViewController: UIViewController {
     private let statue2 = UIImageView()
     private let statue3 = UIImageView()
     private let statue4 = UIImageView()
-    
-    private let ticket = UIImageView()
-    
+        
     private let quizModel = QuizModel()
     private let resultModel = ResultModel()
     
@@ -48,7 +46,6 @@ class GameViewController: UIViewController {
         answersCollection.dataSource = self
         
         // configure views
-        configureTickets()
         setupStatues()
         configureMap()
         configureCollection()
@@ -59,20 +56,7 @@ class GameViewController: UIViewController {
     }
     
     
-    // MARK: - Configure statues and tickets
-    
-    private func configureTickets() {
-        
-        view.addSubview(ticket)
-        
-        ticket.image = UIImage(named: "ticket")
-        
-        ticket.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.leading.equalToSuperview().offset(10)
-            make.width.height.equalTo(UIDevice.current.userInterfaceIdiom == .pad ? 40 : 25)
-        }
-    }
+    // MARK: - Configure statues
     
     
     private func setupStatues() {
