@@ -59,6 +59,8 @@ class HomeViewController: UIViewController {
         startButton.configuration?.title = "Play"
         startButton.configuration?.baseBackgroundColor = .systemGreen
         
+        startButton.addTarget(self, action: #selector(buttonTap), for: .touchUpInside)
+        
         startButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -68,4 +70,15 @@ class HomeViewController: UIViewController {
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
+    
+    @objc private func buttonTap() {
+        
+        let tabVC = TabBarController()
+        
+        tabVC.modalPresentationStyle = .fullScreen
+        tabVC.modalTransitionStyle = .partialCurl
+        
+        present(tabVC, animated: true)
+    }
+    
 }
