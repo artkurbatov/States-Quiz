@@ -27,10 +27,10 @@ class HomeViewController: UIViewController {
         view.addSubview(messageLabel)
         
         titleLabel.text = "States Quiz"
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleLabel.textAlignment = .center
         
-        messageLabel.text = "hello"
+        messageLabel.text = "Test your knowledge of USA maps. You will be given a highlighted state on the map and 4 answers. Are you ready?"
         messageLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         messageLabel.textAlignment = .center
         messageLabel.numberOfLines = 0
@@ -39,7 +39,7 @@ class HomeViewController: UIViewController {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             
