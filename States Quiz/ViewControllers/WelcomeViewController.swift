@@ -7,10 +7,11 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class WelcomeViewController: UIViewController {
     
     private let titleLabel = UILabel()
     private let messageLabel = UILabel()
+    private let iconImageView = UIImageView()
     private let startButton = UIButton()
 
     override func viewDidLoad() {
@@ -18,32 +19,57 @@ class HomeViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         
-        configureLabels()
+        configureTitle()
+        configureIcon()
+        configureMessage()
         configureStartButton()
     }
     
-    private func configureLabels() {
+    private func configureTitle() {
         view.addSubview(titleLabel)
-        view.addSubview(messageLabel)
         
         titleLabel.text = "States Quiz"
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleLabel.textAlignment = .center
-        
-        messageLabel.text = "Test your knowledge of USA maps. You will be given a highlighted state on the map and 4 answers. Are you ready?"
-        messageLabel.font = UIFont.preferredFont(forTextStyle: .title2)
-        messageLabel.textAlignment = .center
-        messageLabel.numberOfLines = 0
-        
+     
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            
-            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
+        ])
+    }
+    
+    private func configureIcon() {
+        
+        view.addSubview(iconImageView)
+        
+        iconImageView.image = UIImage(named: "icon")
+        
+        iconImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            iconImageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            iconImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            iconImageView.widthAnchor.constraint(equalToConstant: 300),
+            iconImageView.heightAnchor.constraint(equalToConstant: 300)
+        ])
+    }
+    
+    private func configureMessage() {
+        
+        view.addSubview(messageLabel)
+        
+        messageLabel.text = "Test your knowledge of USA maps. You will be given a highlighted state on the map and 4 answers.\nAre you ready?"
+        messageLabel.font = UIFont.preferredFont(forTextStyle: .title2)
+        messageLabel.textAlignment = .center
+        messageLabel.numberOfLines = 0
+        
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            messageLabel.topAnchor.constraint(equalTo: iconImageView.bottomAnchor, constant: 20),
             messageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             messageLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
         ])
