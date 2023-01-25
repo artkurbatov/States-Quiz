@@ -13,6 +13,8 @@ class WelcomeViewController: UIViewController {
     private let messageLabel = UILabel()
     private let iconImageView = UIImageView()
     private let startButton = UIButton()
+    
+    private let appState = ApplicationState.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +105,9 @@ class WelcomeViewController: UIViewController {
         
         tabVC.modalPresentationStyle = .fullScreen
         tabVC.modalTransitionStyle = .partialCurl
+        
+        appState.didLaunchBefore = true
+        appState.saveStatus()
         
         present(tabVC, animated: true)
     }
