@@ -24,7 +24,7 @@ class ResultModel {
             }
         }
         catch {
-            #warning("error handler")
+            print(error.localizedDescription)
         }
     }
     
@@ -39,7 +39,7 @@ class ResultModel {
             try self.context.save()
         }
         catch {
-#warning("error handler")
+            print(error.localizedDescription)
         }
     }
     
@@ -52,7 +52,7 @@ class ResultModel {
             try self.context.save()
         }
         catch {
-#warning("error handler")
+            print(error.localizedDescription)
         }
         fetchResults(tableView: resultsTableView)
     }
@@ -66,7 +66,7 @@ class ResultModel {
             try self.context.save()
         }
         catch {
-#warning("error handler")
+            print(error.localizedDescription)
         }
         fetchResults(tableView: resultsTableView)
     }

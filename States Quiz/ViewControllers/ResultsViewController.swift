@@ -12,7 +12,6 @@ import SnapKit
 class ResultsViewController: UIViewController {
     
     private let resultsTableView = UITableView()
-    private let resultsLable = UILabel()
     private let messageLable = UILabel()
     private let resultModel = ResultModel()
         
@@ -29,13 +28,11 @@ class ResultsViewController: UIViewController {
         setupClearButton()
         setupResults()
         setupMessageLabel()
-        //setUpResultsLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         resultModel.fetchResults(tableView: resultsTableView)
         messageLable.alpha = ResultModel.results.count > 0 ? 0 : 1
-        //navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupResults() {
@@ -58,7 +55,7 @@ class ResultsViewController: UIViewController {
     }
     
     @objc private func clearAction() {
-        
+
         if !ResultModel.results.isEmpty {
             
             let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete all your results?", preferredStyle: .alert)
@@ -76,22 +73,7 @@ class ResultsViewController: UIViewController {
             present(alert, animated: true)
         }
     }
-    
-    private func setupResultsLabel() {
 
-        view.addSubview(resultsLable)
-
-        resultsLable.text = "Results"
-        resultsLable.textColor = .black // fix color
-        resultsLable.font = UIFont.boldSystemFont(ofSize: 35)
-
-        resultsLable.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(15)
-            make.width.equalToSuperview().multipliedBy(0.5)
-            make.top.equalToSuperview().offset(100)
-        }
-
-    }
     private func setupMessageLabel() {
         
         view.addSubview(messageLable)
@@ -124,10 +106,8 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let action = UIContextualAction(style: .destructive, title: "Delete") { action, view, complitionHandler in
-            
             self.resultModel.removeResult(resultId: indexPath.row, tableView: self.resultsTableView)
         }
-        
         return UISwipeActionsConfiguration(actions: [action])
     }
 }

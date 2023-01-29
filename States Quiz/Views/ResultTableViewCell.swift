@@ -52,7 +52,6 @@ class ResultTableViewCell: UITableViewCell {
         statuesStack.axis = .horizontal
         statuesStack.distribution = .equalSpacing
         
-        
         let mistakeCounter = Int(resultToDisplay.mistakeCounter)
         
         for i in 0..<statues.count {
@@ -69,6 +68,7 @@ class ResultTableViewCell: UITableViewCell {
                 make.height.equalTo(statuesStack)
             }
         }
+        
         statuesStack.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-5)
             make.width.equalToSuperview().multipliedBy(0.33)

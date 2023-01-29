@@ -169,7 +169,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath) as? AnswerCollectionViewCell {
             cell.backgroundColor = .systemBackground
-            cell.configureCell(text: quizModel.quiz[currentQuestionIndex].answers[indexPath.row])
+            cell.configureCellText(text: quizModel.quiz[currentQuestionIndex].answers[indexPath.row])
             return cell
         }
         else {
