@@ -30,7 +30,7 @@ class WelcomeViewController: UIViewController {
     private func configureTitle() {
         view.addSubview(titleLabel)
         
-        titleLabel.text = "States Quiz"
+        titleLabel.text = "States Map Quiz"
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleLabel.textAlignment = .center
      
@@ -63,7 +63,7 @@ class WelcomeViewController: UIViewController {
         
         view.addSubview(messageLabel)
         
-        messageLabel.text = "Test your knowledge of USA maps. You will be given a highlighted state on the map and 4 answers.\nAre you ready?"
+        messageLabel.text = "Test your knowledge of USA map. You will be given a highlighted state on the map and 4 answers.\nAre you ready?"
         messageLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         messageLabel.textAlignment = .center
         messageLabel.numberOfLines = 0
