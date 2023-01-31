@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let gameVC = model.createTab(rootview: GameViewController(), title: "Games", image: "gamecontroller")
+        let gameVC = model.createTab(rootview: GameViewController(), title: "Game", image: "gamecontroller")
         let historyVC = model.createTab(rootview: ResultsViewController(), title: "Results", image: "list.star")
         
         setViewControllers([gameVC, historyVC], animated: true)

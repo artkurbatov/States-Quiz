@@ -85,31 +85,15 @@ class QuizModel {
         
         let alert = UIAlertController(title: title, message: "You got \(numCorrect) out of \(quiz.count) questions", preferredStyle: .alert)
         
-        let shareAction = UIAlertAction(title: "Share", style: .default) { _ in
-            let shareController = self.createActivityController(score: numCorrect)
-            //shareController.popoverPresentationController?.sourceView = MenuViewController().
-            sender.present(shareController, animated: true)
-            //if UIDevice.current.userInterfaceIdiom != .pad {
-            sender.navigationController?.popToRootViewController(animated: true)
-            //}
-        }
-        
         let playAgain = UIAlertAction(title: "Play again", style: .default) { _ in
             sender.restartGame()
         }
         
-        //alert.addAction(shareAction)
         alert.addAction(playAgain)
         
         return alert
     }
-    
-    func createActivityController(score: Int) -> UIActivityViewController {
         
-        let activityController = UIActivityViewController(activityItems: ["I got \(score) out of \(quiz.count) questions correctly! Check it out!"], applicationActivities: [])
-        return activityController
-    }
-    
     func createButton(title: String, cornerStyle: UIButton.Configuration.CornerStyle) -> UIButton {
         let button = UIButton()
         button.configuration = .tinted()
