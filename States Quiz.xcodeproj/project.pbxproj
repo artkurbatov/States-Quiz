@@ -15,6 +15,7 @@
 		B8613166292E8073007C4953 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8613165292E8073007C4953 /* ResultsViewController.swift */; };
 		B86A6B6D297EB3A70055674C /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A6B6C297EB3A70055674C /* WelcomeViewController.swift */; };
 		B8A23BE4291EDF9A009B2E6F /* AnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A23BE3291EDF9A009B2E6F /* AnswerCollectionViewCell.swift */; };
+		B8BBCF37298A9DFE009940DC /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BBCF36298A9DFE009940DC /* MapViewController.swift */; };
 		B8E2B18B2915754D001BFEF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2B18A2915754D001BFEF0 /* AppDelegate.swift */; };
 		B8E2B18D2915754D001BFEF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2B18C2915754D001BFEF0 /* SceneDelegate.swift */; };
 		B8E2B18F2915754D001BFEF0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2B18E2915754D001BFEF0 /* TabBarController.swift */; };
@@ -38,6 +39,7 @@
 		B8613165292E8073007C4953 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		B86A6B6C297EB3A70055674C /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		B8A23BE3291EDF9A009B2E6F /* AnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCollectionViewCell.swift; sourceTree = "<group>"; };
+		B8BBCF36298A9DFE009940DC /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B8E2B1872915754D001BFEF0 /* States Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "States Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8E2B18A2915754D001BFEF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8E2B18C2915754D001BFEF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				B86A6B6C297EB3A70055674C /* WelcomeViewController.swift */,
 				B8E2B18E2915754D001BFEF0 /* TabBarController.swift */,
 				B858C38F291D2D3100DC1559 /* GameViewController.swift */,
+				B8BBCF36298A9DFE009940DC /* MapViewController.swift */,
 				B8613165292E8073007C4953 /* ResultsViewController.swift */,
 			);
 			path = ViewControllers;
@@ -280,6 +283,7 @@
 				B8E2B18D2915754D001BFEF0 /* SceneDelegate.swift in Sources */,
 				B858C396291D2EED00DC1559 /* QuizModel.swift in Sources */,
 				B858C38E291D1EA900DC1559 /* Quiz.swift in Sources */,
+				B8BBCF37298A9DFE009940DC /* MapViewController.swift in Sources */,
 				B81CBD1929479B6C006B067F /* ApplicationState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,7 +435,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.artkurbatov.States-Quiz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -459,7 +463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "co.artkurbatov.States-Quiz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
