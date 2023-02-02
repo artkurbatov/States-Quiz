@@ -15,10 +15,9 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
         
         let gameVC = model.createTab(rootview: GameViewController(), title: "Game", image: "gamecontroller")
-        let mapVC = model.createTab(rootview: MapViewController(), title: "Map", image: "map")
         let historyVC = model.createTab(rootview: ResultsViewController(), title: "Results", image: "list.star")
         
-        setViewControllers([gameVC, mapVC, historyVC], animated: true)
+        setViewControllers([gameVC, historyVC], animated: true)
     }
 }
 
