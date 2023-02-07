@@ -168,6 +168,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = answersCollection.dequeueReusableCell(withReuseIdentifier: "answerCell", for: indexPath) as? AnswerCollectionViewCell {
+            cell.tag = indexPath.row
             cell.backgroundColor = .systemBackground
             cell.configureCellText(text: quizModel.quiz[currentQuestionIndex].answers[indexPath.row])
             return cell
@@ -221,14 +222,18 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
         else {
             statues[mistakeCounter].alpha = 0
             mistakeCounter += 1
+            selectedCell?.backgroundColor = .systemRed
             
             if mistakeCounter >= 4 {
-
+                let correctCell = answersCollection.visibleCells.first { cell in
+                    quizModel.quiz[currentQuestionIndex].answers[cell.tag] == quizModel.quiz[currentQuestionIndex].correctAnswer
+                }
+                correctCell?.backgroundColor = .systemGreen
+                
                 let alert = quizModel.createResultAlert(title: "Oops...!", numberOfCorrectAnswers: currentQuestionIndex, sender: self)
                 resultModel.addResult(gameTitle: "Guess states", score: "\(currentQuestionIndex)/\(quizModel.quiz.count)", mistakeCounter: mistakeCounter)
                 present(alert, animated: true)
             }
-            selectedCell?.backgroundColor = .systemRed
         }
     }
 }
